@@ -1,0 +1,83 @@
+using System;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PedidoApi.Models;
+
+namespace PedidoApi.Models
+{
+    public class DataGeoLoc : BaseDataAccess
+    {
+        public DataGeoLoc(string connectionString) : base(connectionString)
+        {
+        }
+
+        [HttpGet]
+        public List<GeoLoc> GetGeoLoc()
+        {
+            List<GeoLoc> geolocs = new List<GeoLoc>();
+            GeoLoc geolocitem = null;
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            parameterList.Add(base.GetParameter("option", 0));
+
+            using (DbDataReader dataReader = base.GetDataReader("sp_geoloc", parameterList, CommandType.StoredProcedure))
+            {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        geolocitem = new GeoLoc();
+                        geolocitem.geolocid = (int)dataReader["geolocid"];
+                        geolocitem.tiporeg = (string)dataReader["tiporeg"];
+                        geolocitem.regid = (int)dataReader["regid"];
+                        geolocitem.fecha = (DateTime)dataReader["fecha"];
+                        geolocitem.geolocpos = (string)dataReader["geolocpos"];
+                        geolocitem.vend_id = (int)dataReader["vend_id"];
+                        if (dataReader["cli_id"] != DBNull.Value)
+                            geolocitem.cli_id = (int)dataReader["cli_id"];
+                        else
+                            geolocitem.cli_id = 0;
+
+                        geolocs.Add(geolocitem);
+
+                    }
+                }
+            }
+            return geolocs;
+        }
+
+
+        
+        public GeoLoc CreateGeoLoc(GeoLoc Model)
+        {
+            Console.WriteLine("Guarda Geoloc");
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            DbParameter IdParamter = base.GetParameterOut("new_geolocid", SqlDbType.Int, Model.geolocid);
+            parameterList.Add(IdParamter);
+            parameterList.Add(base.GetParameter("geolocid", Model.geolocid));
+            parameterList.Add(base.GetParameter("tiporeg", Model.tiporeg));
+            parameterList.Add(base.GetParameter("regid", Model.regid));
+            parameterList.Add(base.GetParameter("fecha", Model.fecha));
+            parameterList.Add(base.GetParameter("geolocpos", Model.geolocpos));
+            parameterList.Add(base.GetParameter("vend_id", Model.vend_id));
+            parameterList.Add(base.GetParameter("cli_id", Model.cli_id));
+            parameterList.Add(base.GetParameter("option", 1));
+
+            base.ExecuteNonQuery("sp_geoloc", parameterList, CommandType.StoredProcedure);
+
+            Model.geolocid = (int)IdParamter.Value;
+
+            return Model;
+        }
+
+    }
+}

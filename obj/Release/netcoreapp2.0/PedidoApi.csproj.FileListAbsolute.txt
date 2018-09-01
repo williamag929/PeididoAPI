@@ -1,0 +1,11 @@
+C:\workspace\ionic\PedidoApi\bin\Release\netcoreapp2.0\PedidoApi.deps.json
+C:\workspace\ionic\PedidoApi\bin\Release\netcoreapp2.0\PedidoApi.runtimeconfig.json
+C:\workspace\ionic\PedidoApi\bin\Release\netcoreapp2.0\PedidoApi.runtimeconfig.dev.json
+C:\workspace\ionic\PedidoApi\bin\Release\netcoreapp2.0\PedidoApi.dll
+C:\workspace\ionic\PedidoApi\bin\Release\netcoreapp2.0\PedidoApi.pdb
+C:\workspace\ionic\PedidoApi\obj\Release\netcoreapp2.0\PedidoApi.csprojAssemblyReference.cache
+C:\workspace\ionic\PedidoApi\obj\Release\netcoreapp2.0\PedidoApi.csproj.CoreCompileInputs.cache
+C:\workspace\ionic\PedidoApi\obj\Release\netcoreapp2.0\PedidoApi.AssemblyInfoInputs.cache
+C:\workspace\ionic\PedidoApi\obj\Release\netcoreapp2.0\PedidoApi.AssemblyInfo.cs
+C:\workspace\ionic\PedidoApi\obj\Release\netcoreapp2.0\PedidoApi.dll
+C:\workspace\ionic\PedidoApi\obj\Release\netcoreapp2.0\PedidoApi.pdb

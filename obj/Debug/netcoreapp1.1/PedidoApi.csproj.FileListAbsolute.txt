@@ -1,0 +1,11 @@
+C:\workspace\ionic\PedidoApi\bin\Debug\netcoreapp1.1\PedidoApi.deps.json
+C:\workspace\ionic\PedidoApi\bin\Debug\netcoreapp1.1\PedidoApi.runtimeconfig.json
+C:\workspace\ionic\PedidoApi\bin\Debug\netcoreapp1.1\PedidoApi.runtimeconfig.dev.json
+C:\workspace\ionic\PedidoApi\bin\Debug\netcoreapp1.1\PedidoApi.dll
+C:\workspace\ionic\PedidoApi\bin\Debug\netcoreapp1.1\PedidoApi.pdb
+C:\workspace\ionic\PedidoApi\obj\Debug\netcoreapp1.1\PedidoApi.AssemblyInfo.cs
+C:\workspace\ionic\PedidoApi\obj\Debug\netcoreapp1.1\PedidoApi.dll
+C:\workspace\ionic\PedidoApi\obj\Debug\netcoreapp1.1\PedidoApi.pdb
+C:\workspace\ionic\PedidoApi\obj\Debug\netcoreapp1.1\PedidoApi.csprojAssemblyReference.cache
+C:\workspace\ionic\PedidoApi\obj\Debug\netcoreapp1.1\PedidoApi.csproj.CoreCompileInputs.cache
+C:\workspace\ionic\PedidoApi\obj\Debug\netcoreapp1.1\PedidoApi.AssemblyInfoInputs.cache
