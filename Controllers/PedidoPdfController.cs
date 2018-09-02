@@ -179,6 +179,8 @@ namespace PedidoApi.Controllers
                             result.Content = new StreamContent(memoryStream);
 
                             result.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");//octet-stream
+                            Console.WriteLine("Pdf procesado");
+
 
                             return result;
                             //mm.Attachments.Add(new Attachment, "pedidoventa" + orderNo + ".pdf"));
@@ -187,6 +189,7 @@ namespace PedidoApi.Controllers
                 
             }
 
+  Console.WriteLine("Pdf bad");
 
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }        
@@ -199,7 +202,11 @@ namespace PedidoApi.Controllers
 
             _data = new DataPedidos(constr);
 
+
+
             var p = _data.GetPedidobyId(id);
+
+            Console.WriteLine("id "+ id.ToString() +"pedido"+ p.ped_numero );
 
             var pdet = _data.GetPedidosdet(id);
 
@@ -238,7 +245,9 @@ namespace PedidoApi.Controllers
 
                     var cli = _datacli.GetCliente(p.cli_id);
 
-                    string companyName = cli.cli_nit + "-" + cli.cli_nombre;
+                    Console.WriteLine(p.cli_id.ToString());
+
+                    string companyName = cli.cli_nit.ToString() + "-" + cli.cli_nombre.ToString();
 
                     if (cli.cli_email.Length > 0)
                     {

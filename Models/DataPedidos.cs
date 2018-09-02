@@ -116,9 +116,13 @@ namespace PedidoApi.Models
             var Model = new Config();
             Console.WriteLine("Leyendo");
             List<DbParameter> parameterList = new List<DbParameter>();
-            parameterList.Add(base.GetParameter("option", 0));
+            parameterList.Add(base.GetParameter("option", 1));
             using (DbDataReader dataReader = base.GetDataReader("Get_Config",parameterList, CommandType.StoredProcedure))
             {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
                 Model.nit = (string)dataReader["NIT"];
                 Model.empresa = (string)dataReader["EMPRESA"];
                 Model.direccion = (string)dataReader["DIRECCION"];
@@ -133,10 +137,11 @@ namespace PedidoApi.Models
                 Model.port = (int)dataReader["port"];  
                 Model.subject = (string)dataReader["subject"];
                 Model.body = (string)dataReader["body"];                                                              
-
+                    }
 
 
                 Console.WriteLine(Model.texto1);
+                }
             }
 
             return Model;
