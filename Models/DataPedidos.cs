@@ -131,8 +131,8 @@ namespace PedidoApi.Models
                 Model.usuario = (string)dataReader["usuario"];
                 Model.password = (string)dataReader["password"]; 
                 Model.port = (int)dataReader["port"];  
-                Model.subject = (string)dataReader["password"];
-                Model.body = (string)dataReader["password"];                                                              
+                Model.subject = (string)dataReader["subject"];
+                Model.body = (string)dataReader["body"];                                                              
 
 
 
