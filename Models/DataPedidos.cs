@@ -115,7 +115,9 @@ namespace PedidoApi.Models
         {
             var Model = new Config();
             Console.WriteLine("Leyendo");
-            using (DbDataReader dataReader = base.GetDataReader("sp_pedido", null, CommandType.StoredProcedure))
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(base.GetParameter("option", 0));
+            using (DbDataReader dataReader = base.GetDataReader("Get_Config",parameterList, CommandType.StoredProcedure))
             {
                 Model.nit = (string)dataReader["NIT"];
                 Model.empresa = (string)dataReader["EMPRESA"];
