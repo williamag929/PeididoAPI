@@ -1,22 +1,18 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using PedidoApi.Models;
-using System.Linq;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using iTextSharp;
 using System.Data;
 using System;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System.Net.Http;
-using Microsoft.AspNetCore.Authorization;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
 
 namespace PedidoApi.Controllers
 {
@@ -159,29 +155,32 @@ namespace PedidoApi.Controllers
                     {
                         PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
 
-
                         pdfDoc.Open();
                         htmlparser.Parse(sr);
                         pdfDoc.Close();
                         byte[] bytes = memoryStream.ToArray();
                         memoryStream.Close();
                         ///
-
-
                         HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
 
                         if (p.ped_numero > 0)
                         {
                             var contentLength = bytes.Length;
 
-                            response.Content = new StreamContent(memoryStream);
+                            //var statuscode = HttpStatusCode.OK;
+                            //response = Request.CreateResponse(statuscode);
+                            response.Content = new StreamContent(new MemoryStream(bytes));
                             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
                             response.Content.Headers.ContentLength = contentLength;
-                            ContentDispositionHeaderValue contentDisposition = null;
-                            if (ContentDispositionHeaderValue.TryParse("inline; filename=" + p.ped_numero.ToString() + ".pdf", out contentDisposition))
+                            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                             {
-                                response.Content.Headers.ContentDisposition = contentDisposition;
-                            }
+                                FileName =p.ped_numero.ToString() +".pdf"
+                            };
+                            //ContentDispositionHeaderValue contentDisposition = null;
+                            //if (ContentDispositionHeaderValue.TryParse("inline; filename=" + p.ped_numero.ToString() + ".pdf", out contentDisposition))
+                            //{
+                            //    response.Content.Headers.ContentDisposition = contentDisposition;
+                            //}
                         }
                         else
                         {
@@ -191,9 +190,6 @@ namespace PedidoApi.Controllers
                             response = new HttpResponseMessage(HttpStatusCode.NotFound);
                         }
                         ///
-
-
-
 
                         return response;
                         //mm.Attachments.Add(new Attachment, "pedidoventa" + orderNo + ".pdf"));
@@ -214,8 +210,6 @@ namespace PedidoApi.Controllers
             var constr = _options.constr;
 
             _data = new DataPedidos(constr);
-
-
 
             var p = _data.GetPedidobyId(id);
 
