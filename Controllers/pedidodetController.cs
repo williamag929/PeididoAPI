@@ -4,6 +4,7 @@ using PedidoApi.Models;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace PedidoApi.Controllers
 {
@@ -68,11 +69,13 @@ namespace PedidoApi.Controllers
         }
 
         [HttpDelete]
-          public JsonResult DeleteDet(int id)
+          public IActionResult DeleteDet(int id)
         {
             var constr = _options.constr;
 
             _data = new DataPedidos(constr);
+
+            Console.WriteLine(id.ToString());
 
             var pedido = _data.GetPedidodetbyid(id);
 

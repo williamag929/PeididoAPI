@@ -404,9 +404,10 @@ namespace PedidoApi.Models
         public ped_det GetPedidodetbyid(int ped_det_id)
         {
 
+            //buscar pedido
             var Model = new ped_det();
 
-
+            Console.WriteLine("detpedido: "+ped_det_id.ToString());
             Model.ped_det_id = ped_det_id;
 
             var PedItem = new ped_det();
@@ -456,7 +457,7 @@ namespace PedidoApi.Models
                             PedItem.val_desc = 0;
 
                         if (dataReader["porc_imp"] != DBNull.Value)
-                            PedItem.porc_imp = (double)dataReader["porc_imp"];
+                            PedItem.porc_imp =  Convert.ToDouble(dataReader["porc_imp"]);
                         else
                             PedItem.porc_imp = 0;
 
@@ -473,6 +474,8 @@ namespace PedidoApi.Models
                     }
                 }
             }
+
+            Console.WriteLine("detalle encontrado: "+PedItem.subtotal.ToString());
             return PedItem;
 
         }
@@ -541,6 +544,13 @@ namespace PedidoApi.Models
 
         public ped_det DeletePedidodet(ped_det Model)
         {
+            Console.WriteLine("Borra detalle");
+            Console.WriteLine("ped_id " + Model.ped_id);
+
+            Console.WriteLine("pro_id " + Model.pro_id);
+
+            Console.WriteLine("cant " + Model.cant);
+
             List<DbParameter> parameterList = new List<DbParameter>();
 
             DbParameter IdParamter = base.GetParameterOut("new_ped_det_id", SqlDbType.Int, Model.ped_det_id);
@@ -560,9 +570,12 @@ namespace PedidoApi.Models
 
             base.ExecuteNonQuery("sp_pedidodet", parameterList, CommandType.StoredProcedure);
 
-            //Model.ped_id = (int)IdParamter.Value;
+            Model.ped_det_id = (int)IdParamter.Value;
 
             return Model;
+            //Model.ped_id = (int)IdParamter.Value;
+
+
         }
 
 
