@@ -117,30 +117,30 @@ namespace PedidoApi.Models
             Console.WriteLine("Leyendo");
             List<DbParameter> parameterList = new List<DbParameter>();
             parameterList.Add(base.GetParameter("option", 1));
-            using (DbDataReader dataReader = base.GetDataReader("Get_Config",parameterList, CommandType.StoredProcedure))
+            using (DbDataReader dataReader = base.GetDataReader("Get_Config", parameterList, CommandType.StoredProcedure))
             {
                 if (dataReader != null && dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                Model.nit = (string)dataReader["NIT"];
-                Model.empresa = (string)dataReader["EMPRESA"];
-                Model.direccion = (string)dataReader["DIRECCION"];
-                Model.telefono = (string)dataReader["TELEFONO"];
-                Model.telefono2 = (string)dataReader["TELEFONO2"];
-                Model.texto1 = (string)dataReader["TEXTO1"];
-                Model.texto2 = (string)dataReader["TEXTO2"];
-                Model.texto3 = (string)dataReader["TEXTO3"];
-                Model.smtp = (string)dataReader["smtp"];                                                
-                Model.usuario = (string)dataReader["usuario"];
-                Model.password = (string)dataReader["password"]; 
-                Model.port = (int)dataReader["port"];  
-                Model.subject = (string)dataReader["subject"];
-                Model.body = (string)dataReader["body"];                                                              
+                        Model.nit = (string)dataReader["NIT"];
+                        Model.empresa = (string)dataReader["EMPRESA"];
+                        Model.direccion = (string)dataReader["DIRECCION"];
+                        Model.telefono = (string)dataReader["TELEFONO"];
+                        Model.telefono2 = (string)dataReader["TELEFONO2"];
+                        Model.texto1 = (string)dataReader["TEXTO1"];
+                        Model.texto2 = (string)dataReader["TEXTO2"];
+                        Model.texto3 = (string)dataReader["TEXTO3"];
+                        Model.smtp = (string)dataReader["smtp"];
+                        Model.usuario = (string)dataReader["usuario"];
+                        Model.password = (string)dataReader["password"];
+                        Model.port = (int)dataReader["port"];
+                        Model.subject = (string)dataReader["subject"];
+                        Model.body = (string)dataReader["body"];
                     }
 
 
-                Console.WriteLine(Model.texto1);
+                    Console.WriteLine(Model.texto1);
                 }
             }
 
@@ -277,6 +277,8 @@ namespace PedidoApi.Models
 
             Console.WriteLine("Actualiza Pedido " + Model.ped_id);
 
+            Console.WriteLine("pedido cerado " + Model.ped_closed);
+
             List<DbParameter> parameterList = new List<DbParameter>();
 
             DbParameter IdParamter = base.GetParameterOut("new_ped_id", SqlDbType.Int, Model.ped_id);
@@ -407,7 +409,7 @@ namespace PedidoApi.Models
             //buscar pedido
             var Model = new ped_det();
 
-            Console.WriteLine("detpedido: "+ped_det_id.ToString());
+            Console.WriteLine("detpedido: " + ped_det_id.ToString());
             Model.ped_det_id = ped_det_id;
 
             var PedItem = new ped_det();
@@ -457,7 +459,7 @@ namespace PedidoApi.Models
                             PedItem.val_desc = 0;
 
                         if (dataReader["porc_imp"] != DBNull.Value)
-                            PedItem.porc_imp =  Convert.ToDouble(dataReader["porc_imp"]);
+                            PedItem.porc_imp = Convert.ToDouble(dataReader["porc_imp"]);
                         else
                             PedItem.porc_imp = 0;
 
@@ -475,7 +477,7 @@ namespace PedidoApi.Models
                 }
             }
 
-            Console.WriteLine("detalle encontrado: "+PedItem.subtotal.ToString());
+            Console.WriteLine("detalle encontrado: " + PedItem.subtotal.ToString());
             return PedItem;
 
         }
