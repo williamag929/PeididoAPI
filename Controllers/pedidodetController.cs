@@ -12,6 +12,7 @@ namespace PedidoApi.Controllers
     public class PedidodetController : Controller
     {
         private DataPedidos _data;
+        private DataClientes _datacli;
 
         private readonly MyOptions _options;
 
@@ -45,14 +46,18 @@ namespace PedidoApi.Controllers
 
             
             _data = new DataPedidos(constr);
+            _datacli = new DataClientes(constr);
 
             //buscar el cliente
-            
+            var ped = _data.GetPedidobyId(model.ped_id);
+
+            var cli = _datacli.GetCliente(ped.cli_id);
 
             //tomar el descuento
             //tomar la lista de precio
+            model.porc_desc = cli.descuento;
 
-            model = _data.CreatePedidodet(model);
+            //model = _data.CreatePedidodet(model);
 
             if (model.ped_det_id == 0)
             {

@@ -24,6 +24,10 @@ namespace PedidoApi.Models
         public string cod_nivel { get; set; }
 
         public decimal descuento { get; set; }
+        public int cotizaciones { get; internal set; }
+        public int cartera { get; internal set; }
+        public int visitas { get; internal set; }
+        public int pedidos { get; internal set; }
     }
 
 }

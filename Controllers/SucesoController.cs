@@ -10,7 +10,7 @@ namespace PedidoApi.Controllers
     [Route("api/[controller]")]
     public class SucesoController : Controller
     {
-        private DataPedidos _data;
+        private DataSuceso _data;
 
         private readonly MyOptions _options;
 
@@ -24,15 +24,15 @@ namespace PedidoApi.Controllers
         {
             var constr = _options.constr;
 
-            _data = new DataPedidos(constr);
+            _data = new DataSuceso(constr);
 
-            var pedido = _data.GetPedidodetbyid(id);
+            var model = _data.GetSucesobyId(id);
 
-            return Json(pedido);
+            return Json(model);
         }
 
         [HttpPost]
-        public IActionResult SetSuceso([FromBody]  ped_det model)
+        public IActionResult SetSuceso([FromBody]  Suceso model)
         {
 
             if (model == null)
@@ -43,23 +43,39 @@ namespace PedidoApi.Controllers
             var constr = _options.constr;
 
             
-            _data = new DataPedidos(constr);
+            _data = new DataSuceso(constr);
 
             
-            model = _data.CreatePedidodet(model);
+            //model = _data.CreateSuceso(model);
 
-            if (model.ped_det_id == 0)
+            if (model.sucesoid == 0)
             {
-                model = _data.CreatePedidodet(model);
+                model = _data.CreateSuceso(model);
             }
-            else
-            {
-                model = _data.UpdatePedidodet(model);
-            }
+            //else
+            //{
+            //    model = _data.u(model);
+            //}
 
             return Json(model);
 
-            //return CreatedAtRoute("GetById", new {id = model.ped_det_id},model);
         }
+
+
+        
+        [HttpDelete]
+        public IActionResult DeleteDet(int id)
+        {
+            var constr = _options.constr;
+
+            _data = new DataSuceso(constr);
+
+            var model = _data.GetSucesobyId(id);
+
+            var del = _data.DeleteSuceso(model);
+
+            return Json(model);
+        }
+
     }
 }

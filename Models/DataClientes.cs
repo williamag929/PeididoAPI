@@ -32,7 +32,7 @@ namespace PedidoApi.Models
                 {
                     while (dataReader.Read())
                     {
-                        ClienteItem  = new Cliente();
+                        ClienteItem = new Cliente();
                         ClienteItem.cli_id = (int)dataReader["CLI_ID"];
                         ClienteItem.cli_suc = (int)dataReader["CLI_SUC"];
                         ClienteItem.cli_nit = (string)dataReader["CLI_NIT"];
@@ -47,7 +47,7 @@ namespace PedidoApi.Models
 
                         try
                         {
-                        ClienteItem.cli_cupo = (decimal)dataReader["CLI_CUPO"];
+                            ClienteItem.cli_cupo = (decimal)dataReader["CLI_CUPO"];
                         }
                         catch
                         {
@@ -58,7 +58,7 @@ namespace PedidoApi.Models
 
                         try
                         {
-                        ClienteItem.cli_orden = (int)dataReader["CLI_ORDEN"];
+                            ClienteItem.cli_orden = (int)dataReader["CLI_ORDEN"];
                         }
                         catch
                         {
@@ -71,12 +71,12 @@ namespace PedidoApi.Models
                         {
                             ClienteItem.vend_id = (int)dataReader["VEND_ID"];
                         }
-                        catch{}
+                        catch { }
                         ClienteItem.nivel = (string)dataReader["NIVEL"];
                         if (dataReader["COD_NIVEL"] != DBNull.Value)
                             ClienteItem.cod_nivel = (string)dataReader["COD_NIVEL"];
-                        if (dataReader["DESCUENTO"] != DBNull.Value)    
-                        ClienteItem.descuento = (decimal)dataReader["DESCUENTO"];
+                        if (dataReader["DESCUENTO"] != DBNull.Value)
+                            ClienteItem.descuento = (decimal)dataReader["DESCUENTO"];
 
                         clientes.Add(ClienteItem);
                     }
@@ -101,7 +101,7 @@ namespace PedidoApi.Models
                 {
                     while (dataReader.Read())
                     {
-                        ClienteItem  = new Cliente();
+                        ClienteItem = new Cliente();
                         ClienteItem.cli_id = (int)dataReader["CLI_ID"];
                         ClienteItem.cli_suc = (int)dataReader["CLI_SUC"];
                         ClienteItem.cli_nit = (string)dataReader["CLI_NIT"];
@@ -117,7 +117,7 @@ namespace PedidoApi.Models
 
                         try
                         {
-                        ClienteItem.cli_orden = (int)dataReader["CLI_ORDEN"];
+                            ClienteItem.cli_orden = (int)dataReader["CLI_ORDEN"];
                         }
                         catch
                         {
@@ -130,12 +130,36 @@ namespace PedidoApi.Models
                         {
                             ClienteItem.vend_id = (int)dataReader["VEND_ID"];
                         }
-                        catch{}
+                        catch { }
                         ClienteItem.nivel = (string)dataReader["NIVEL"];
                         if (dataReader["COD_NIVEL"] != DBNull.Value)
                             ClienteItem.cod_nivel = (string)dataReader["COD_NIVEL"];
-                        if (dataReader["DESCUENTO"] != DBNull.Value)    
-                        ClienteItem.descuento = (decimal)dataReader["DESCUENTO"];
+                        if (dataReader["DESCUENTO"] != DBNull.Value)
+                            ClienteItem.descuento = (decimal)dataReader["DESCUENTO"];
+
+                        try
+                        {
+                            ClienteItem.pedidos = (int)dataReader["pedidos"];
+                        }
+                        catch { }
+
+                        try
+                        {
+                            ClienteItem.visitas = (int)dataReader["visitas"];
+                        }
+                        catch { }
+
+                        try
+                        {
+                            ClienteItem.cartera = (int)dataReader["cartera"];
+                        }
+                        catch { }
+
+                        try
+                        {
+                            ClienteItem.cotizaciones = (int)dataReader["cotizaciones"];
+                        }
+                        catch { }
 
                         //clientes.Add(ClienteItem);
                     }

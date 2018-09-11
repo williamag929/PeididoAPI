@@ -57,13 +57,10 @@ namespace PedidoApi.Models
         
         public GeoLoc CreateGeoLoc(GeoLoc Model)
         {
-            Console.WriteLine("Guarda Geoloc");
-
             List<DbParameter> parameterList = new List<DbParameter>();
 
             DbParameter IdParamter = base.GetParameterOut("new_geolocid", SqlDbType.Int, Model.geolocid);
             parameterList.Add(IdParamter);
-            parameterList.Add(base.GetParameter("geolocid", Model.geolocid));
             parameterList.Add(base.GetParameter("tiporeg", Model.tiporeg));
             parameterList.Add(base.GetParameter("regid", Model.regid));
             parameterList.Add(base.GetParameter("fecha", Model.fecha));

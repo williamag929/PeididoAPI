@@ -546,12 +546,6 @@ namespace PedidoApi.Models
 
         public ped_det DeletePedidodet(ped_det Model)
         {
-            Console.WriteLine("Borra detalle");
-            Console.WriteLine("ped_id " + Model.ped_id);
-
-            Console.WriteLine("pro_id " + Model.pro_id);
-
-            Console.WriteLine("cant " + Model.cant);
 
             List<DbParameter> parameterList = new List<DbParameter>();
 

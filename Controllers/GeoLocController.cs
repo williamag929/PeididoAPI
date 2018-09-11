@@ -4,6 +4,7 @@ using PedidoApi.Models;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace PedidoApi.Controllers
 {
@@ -44,6 +45,8 @@ namespace PedidoApi.Controllers
             var constr = _options.constr;
 
             _data = new DataGeoLoc(constr);
+
+            model.fecha = DateTime.Now;
 
             if (model.geolocid == 0)
             {
