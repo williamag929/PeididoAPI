@@ -34,7 +34,7 @@ namespace PedidoApi.Models
                     {
 
                         model = new Suceso();
-                        model.sucesoid = (int)dataReader["suceso_id"];
+                        model.sucesoid = (int)dataReader["sucesoid"];
                         model.vend_id = (int)dataReader["vend_id"];
                         model.cli_id = (int)dataReader["cli_id"];
                         model.fecha = (DateTime)dataReader["fecha"];
@@ -85,17 +85,21 @@ namespace PedidoApi.Models
         {
             //Console.WriteLine(ped_id.ToString());
 
+            
+
             var Model = new Suceso();
+            
+            Model.fecha = DateTime.Now;
             List<DbParameter> parameterList = new List<DbParameter>();
-            parameterList.Add(base.GetParameter("sucesoid", Model.sucesoid));
+            parameterList.Add(base.GetParameter("sucesoid", sucesoid));
             parameterList.Add(base.GetParameter("vend_id", Model.vend_id));
             parameterList.Add(base.GetParameter("cli_id", Model.cli_id));
-            parameterList.Add(base.GetParameter("fecha", Model.fecha));
+            parameterList.Add(base.GetParameter("fecha", (DateTime)Model.fecha));
             parameterList.Add(base.GetParameter("tiempo", Model.tiempo));
             parameterList.Add(base.GetParameter("cadena", Model.cadena));
             parameterList.Add(base.GetParameter("nota", Model.nota));
             parameterList.Add(base.GetParameter("tipo", Model.tipo));
-            parameterList.Add(base.GetParameter("option", 1));
+            parameterList.Add(base.GetParameter("option", 0));
 
             parameterList.Add(base.GetParameter("new_sucesoid", null));
 
@@ -111,7 +115,7 @@ namespace PedidoApi.Models
                     while (dataReader.Read())
                     {
                         model = new Suceso();
-                        model.sucesoid = (int)dataReader["suceso_id"];
+                        model.sucesoid = (int)dataReader["sucesoid"];
                         model.vend_id = (int)dataReader["vend_id"];
                         model.cli_id = (int)dataReader["cli_id"];
                         model.fecha = (DateTime)dataReader["fecha"];
