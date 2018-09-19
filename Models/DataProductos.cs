@@ -64,6 +64,15 @@ namespace PedidoApi.Models
                         else
                             productoItem.peso = 0;
 
+                        if (dataReader["ORDENADO"] != DBNull.Value)  
+                            productoItem.ordenado = (decimal)dataReader["ORDENADO"];
+                        else
+                            productoItem.ordenado = 0;
+
+                        if (dataReader["EXISTENCIA"] != DBNull.Value)  
+                            productoItem.existencia = (decimal)dataReader["EXISTENCIA"];
+                        else
+                            productoItem.existencia = 0;                            
 
                         productos.Add(productoItem);
                     }

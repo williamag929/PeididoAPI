@@ -53,6 +53,9 @@ namespace PedidoApi.Controllers
 
             var cli = _datacli.GetCliente(ped.cli_id);
 
+            //busca si el mismo producto ya se selecciono
+            //para remplazarlo
+
             //tomar el descuento
             //tomar la lista de precio
             model.porc_desc = cli.descuento;
