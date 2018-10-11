@@ -17,40 +17,151 @@ namespace PedidoApi.Models
         {
         }
 
-
-        
-        public ped_det CreateSuceso(ped_det Model)
+       public List<Suceso> GetSucesos(int vend_id)
         {
-            Console.WriteLine("Guarda detalle");
-            Console.WriteLine("ped_id "+Model.ped_id);
-
-            Console.WriteLine("pro_id "+Model.pro_id);
-            
-            Console.WriteLine("cant "+Model.cant);
+            List<Suceso> lista = new List<Suceso>();
+            Suceso model = null;
 
             List<DbParameter> parameterList = new List<DbParameter>();
 
-            DbParameter IdParamter = base.GetParameterOut("new_ped_det_id", SqlDbType.Int, Model.ped_det_id);
+            parameterList.Add(base.GetParameter("vend_id", vend_id));
+
+            using (DbDataReader dataReader = base.GetDataReader("Get_sucesos", parameterList, CommandType.StoredProcedure))
+            {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+
+                        model = new Suceso();
+                        model.sucesoid = (int)dataReader["sucesoid"];
+                        model.vend_id = (int)dataReader["vend_id"];
+                        model.cli_id = (int)dataReader["cli_id"];
+                        model.fecha = (DateTime)dataReader["fecha"];
+
+                        if (dataReader["tiempo"] != DBNull.Value)
+                            model.tiempo = (decimal)dataReader["tiempo"];
+
+                        model.cadena = (string)dataReader["cadena"];
+                        model.nota = (string)dataReader["nota"];
+                        model.tipo = (string)dataReader["tipo"]; 
+
+                        lista.Add(model);
+
+                    }
+                }
+            }
+            return lista;
+        }
+
+
+        
+        public Suceso CreateSuceso(Suceso Model)
+        {
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            DbParameter IdParamter = base.GetParameterOut("new_sucesoid", SqlDbType.Int, Model.sucesoid);
             parameterList.Add(IdParamter);
-            parameterList.Add(base.GetParameter("ped_det_id", Model.ped_det_id));
-            parameterList.Add(base.GetParameter("ped_id", Model.ped_id));
-            parameterList.Add(base.GetParameter("prod_id", Model.pro_id));
-            parameterList.Add(base.GetParameter("cant", Model.cant));
-            parameterList.Add(base.GetParameter("precio", Model.precio));
-            parameterList.Add(base.GetParameter("porc_desc", Model.porc_desc));
-            parameterList.Add(base.GetParameter("val_desc", Model.val_desc));
-            parameterList.Add(base.GetParameter("porc_imp", Model.porc_imp));
-            parameterList.Add(base.GetParameter("val_imp", Model.val_imp));
-            parameterList.Add(base.GetParameter("subtotal", Model.subtotal));
+            parameterList.Add(base.GetParameter("sucesoid", Model.sucesoid));
+            parameterList.Add(base.GetParameter("vend_id", Model.vend_id));
+            parameterList.Add(base.GetParameter("cli_id", Model.cli_id));
+            parameterList.Add(base.GetParameter("fecha", Model.fecha));
+            parameterList.Add(base.GetParameter("tiempo", Model.tiempo));
+            parameterList.Add(base.GetParameter("cadena", Model.cadena));
+            parameterList.Add(base.GetParameter("nota", Model.nota));
+            parameterList.Add(base.GetParameter("tipo", Model.tipo));
             parameterList.Add(base.GetParameter("option", 1));
 
 
-            base.ExecuteNonQuery("sp_pedidodet", parameterList, CommandType.StoredProcedure);
+            base.ExecuteNonQuery("sp_suceso", parameterList, CommandType.StoredProcedure);
 
-            Model.ped_det_id = (int)IdParamter.Value;
+            Model.sucesoid = (int)IdParamter.Value;
 
             return Model;
         }
 
+
+        public Suceso GetSucesobyId(int sucesoid)
+        {
+            //Console.WriteLine(ped_id.ToString());
+
+            
+
+            var Model = new Suceso();
+            
+            Model.fecha = DateTime.Now;
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(base.GetParameter("sucesoid", sucesoid));
+            parameterList.Add(base.GetParameter("vend_id", Model.vend_id));
+            parameterList.Add(base.GetParameter("cli_id", Model.cli_id));
+            parameterList.Add(base.GetParameter("fecha", (DateTime)Model.fecha));
+            parameterList.Add(base.GetParameter("tiempo", Model.tiempo));
+            parameterList.Add(base.GetParameter("cadena", Model.cadena));
+            parameterList.Add(base.GetParameter("nota", Model.nota));
+            parameterList.Add(base.GetParameter("tipo", Model.tipo));
+            parameterList.Add(base.GetParameter("option", 0));
+
+            parameterList.Add(base.GetParameter("new_sucesoid", null));
+
+            var model = new Suceso();
+
+            using (DbDataReader dataReader = base.GetDataReader("sp_suceso", parameterList, CommandType.StoredProcedure))
+            {
+
+                //Console.WriteLine("Leyendo");
+
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        model = new Suceso();
+                        model.sucesoid = (int)dataReader["sucesoid"];
+                        model.vend_id = (int)dataReader["vend_id"];
+                        model.cli_id = (int)dataReader["cli_id"];
+                        model.fecha = (DateTime)dataReader["fecha"];
+
+                        if (dataReader["tiempo"] != DBNull.Value)
+                            model.tiempo = (decimal)dataReader["tiempo"];
+
+                        model.cadena = (string)dataReader["cadena"];
+                        model.nota = (string)dataReader["nota"];
+                        model.tipo = (string)dataReader["tipo"];                                                
+
+                        //if (dataReader["PESO"] != DBNull.Value)  
+                        //    productoItem.peso = (decimal)dataReader["PESO"];
+                        //else
+                        //    productoItem.peso = 0;
+
+                    }
+                }
+            }
+            return model;
+
+        }
+
+
+        public Suceso DeleteSuceso(Suceso Model)
+        {
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            DbParameter IdParamter = base.GetParameterOut("new_sucesoid", SqlDbType.Int, Model.sucesoid);
+            parameterList.Add(IdParamter);
+            parameterList.Add(base.GetParameter("sucesoid", Model.sucesoid));
+            parameterList.Add(base.GetParameter("vend_id", Model.vend_id));
+            parameterList.Add(base.GetParameter("cli_id", Model.cli_id));
+            parameterList.Add(base.GetParameter("fecha", Model.fecha));
+            parameterList.Add(base.GetParameter("tiempo", Model.tiempo));
+            parameterList.Add(base.GetParameter("cadena", Model.cadena));
+            parameterList.Add(base.GetParameter("nota", Model.nota));
+            parameterList.Add(base.GetParameter("tipo", Model.tipo));
+            parameterList.Add(base.GetParameter("option", 3));
+
+
+            base.ExecuteNonQuery("sp_pedido", parameterList, CommandType.StoredProcedure);
+
+            //Model.sucesoid = (int)IdParamter.Value;
+
+            return Model;
+        }
     }
 }

@@ -21,6 +21,8 @@ namespace PedidoApi.Models
         public decimal precio6 { get; set; }
         public string estado { get; set; }
         public decimal? peso { get; set; }
+        public decimal ordenado {get; set;}
+        public decimal existencia {get; set;}
 
     }
 }

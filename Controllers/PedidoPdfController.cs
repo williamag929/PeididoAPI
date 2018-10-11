@@ -155,43 +155,31 @@ namespace PedidoApi.Controllers
                     {
                         PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
 
+
                         pdfDoc.Open();
                         htmlparser.Parse(sr);
                         pdfDoc.Close();
                         byte[] bytes = memoryStream.ToArray();
                         memoryStream.Close();
-                        ///
-                        HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
 
-                        if (p.ped_numero > 0)
-                        {
-                            var contentLength = bytes.Length;
+                        HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
 
-                            //var statuscode = HttpStatusCode.OK;
-                            //response = Request.CreateResponse(statuscode);
-                            response.Content = new StreamContent(new MemoryStream(bytes));
-                            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-                            response.Content.Headers.ContentLength = contentLength;
-                            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-                            {
-                                FileName =p.ped_numero.ToString() +".pdf"
-                            };
-                            //ContentDispositionHeaderValue contentDisposition = null;
-                            //if (ContentDispositionHeaderValue.TryParse("inline; filename=" + p.ped_numero.ToString() + ".pdf", out contentDisposition))
-                            //{
-                            //    response.Content.Headers.ContentDisposition = contentDisposition;
-                            //}
-                        }
-                        else
-                        {
-                            //var statuscode = HttpStatusCode.NotFound;
-                            //var message = String.Format("Unable to find resource. Resource \"{0}\" may not exist.", id.ToString());
-                            //var responseData = responseDataFactory.CreateWithOnlyMetadata(statuscode, message);
-                            response = new HttpResponseMessage(HttpStatusCode.NotFound);
-                        }
-                        ///
 
-                        return response;
+
+                        string fileName = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf";
+
+                        FileStream Fs = System.IO.File.Create(fileName);
+                        Fs.Write(bytes, 0, (int)bytes.Length);
+                        Fs.Close();
+                        //return (new MemoryStream(bytes)
+
+                        result.Content = new StreamContent(memoryStream);
+
+                        result.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");//octet-stream
+                        Console.WriteLine("Pdf procesado");
+
+
+                        return result;
                         //mm.Attachments.Add(new Attachment, "pedidoventa" + orderNo + ".pdf"));
                     }
                 }
@@ -203,9 +191,11 @@ namespace PedidoApi.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
+
         [HttpPost]
-        public string SendPdf(int id, int vend_id)
+        public IActionResult SendPdf([FromBody]  ped_enc model)
         {
+            Console.WriteLine("id: " + model.ped_id.ToString());
 
             var constr = _options.constr;
 
@@ -213,19 +203,22 @@ namespace PedidoApi.Controllers
 
             var p = _data.GetPedidobyId(id);
 
-            p.ped_closed = true;
+            //var p = _data.GetPedidobyId(model.ped_id);
 
-            _data.UpdatePedido(p);
+            model.ped_closed = true;
 
-            Console.WriteLine("id " + id.ToString() + "pedido" + p.ped_numero);
+            //todo: actualizar con modelo recibido para enviar notas
+            _data.UpdatePedido(model);
 
-            var pdet = _data.GetPedidosdet(id);
+            Console.WriteLine("numero" + model.ped_numero);
 
             Config config = _data.GetConfig();
 
             //int numero = pedido.PED_NUMERO.Value;
             //string tipo = pedido.PED_TIPO;
 
+            var pdet = _data.GetPedidosdet(model.ped_id);
+            var p = model;
 
             using (StringWriter sw = new StringWriter())
             {
@@ -366,7 +359,7 @@ namespace PedidoApi.Controllers
             }
 
 
-            return "Correo Enviado";
+            return Json(model);
         }
 
 
