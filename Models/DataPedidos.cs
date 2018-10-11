@@ -330,7 +330,7 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_lastupdate", Model.ped_lastupdate));
             parameterList.Add(base.GetParameter("ped_closed", Model.ped_closed));
             parameterList.Add(base.GetParameter("ped_note", Model.ped_note));
-            parameterList.Add(base.GetParameter("option", 2));
+            parameterList.Add(base.GetParameter("option", 3));
 
 
             base.ExecuteNonQuery("sp_pedido", parameterList, CommandType.StoredProcedure);

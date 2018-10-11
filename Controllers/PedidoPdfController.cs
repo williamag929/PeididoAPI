@@ -213,6 +213,10 @@ namespace PedidoApi.Controllers
 
             var p = _data.GetPedidobyId(id);
 
+            p.ped_closed = true;
+
+            _data.UpdatePedido(p);
+
             Console.WriteLine("id " + id.ToString() + "pedido" + p.ped_numero);
 
             var pdet = _data.GetPedidosdet(id);

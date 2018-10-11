@@ -9,14 +9,14 @@ namespace PedidoApi.Controllers
 {
     [Route("api/[controller]")]
 
-    public class UserController : Controller
+    public class LogUserController : Controller
     {
 
-        private DataVendedores _data;
+        private DataUser _data;
 
         private readonly MyOptions _options;
 
-        public UserController(IOptions<MyOptions> optionsAccessor)
+        public LogUserController(IOptions<MyOptions> optionsAccessor)
         {
             _options = optionsAccessor.Value;
         }
@@ -25,26 +25,26 @@ namespace PedidoApi.Controllers
         public IActionResult Autentificar(string user, string password)
         {
 
-            var usuario = new vendedor();
+            var usuario = new user();
             try
             {
                 var constr = _options.constr;
 
-                _data = new DataVendedores(constr);
+                _data = new DataUser(constr);
 
-                var usuarios = _data.GetVendedores();
+                var usuarios = _data.GetUsers();
 
                 usuario = usuarios.First(x => x.usuario == user);
                 //var usuario = _data.GetVendedor(user);
 
-                if (usuario.password == password)
+                if (usuario.clave == password)
                 {
                     return Json(usuario);
                 }
                 else
                 {
-                    //return Json(usuario);
-                    return BadRequest(new {message = "bad Request"});
+                    return Json(new user());
+                    //return BadRequest(new {message = "bad Request"});
                 }
             }
             catch

@@ -18,6 +18,7 @@ namespace PedidoApi.Models
         {
         }
 
+
         public vendedor GetVendedor(string user)
         {
 
