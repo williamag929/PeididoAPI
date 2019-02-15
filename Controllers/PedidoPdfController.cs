@@ -201,9 +201,9 @@ namespace PedidoApi.Controllers
 
             _data = new DataPedidos(constr);
 
-            var p = _data.GetPedidobyId(id);
+            //var p = _data.GetPedidobyId(id);
 
-            //var p = _data.GetPedidobyId(model.ped_id);
+            var p = _data.GetPedidobyId(model.ped_id);
 
             model.ped_closed = true;
 
@@ -218,7 +218,7 @@ namespace PedidoApi.Controllers
             //string tipo = pedido.PED_TIPO;
 
             var pdet = _data.GetPedidosdet(model.ped_id);
-            var p = model;
+            //var p = model;
 
             using (StringWriter sw = new StringWriter())
             {

@@ -17,16 +17,16 @@ namespace PedidoApi.Models
         {
         }
 
-        public List<documento> GetDocumentos()
+        public List<documento> GetDocumentos(string clase)
         {
             List<documento> Documentos = new List<documento>();
             documento DocumentoItem = null;
 
             List<DbParameter> parameterList = new List<DbParameter>();
 
-            //parameterList.Add(base.GetParameter("vend_id", vend_id));
+            parameterList.Add(base.GetParameter("clase", clase));
 
-            using (DbDataReader dataReader = base.GetDataReader("Get_Clientes", parameterList, CommandType.StoredProcedure))
+            using (DbDataReader dataReader = base.GetDataReader("Get_Documentos", parameterList, CommandType.StoredProcedure))
             {
                 if (dataReader != null && dataReader.HasRows)
                 {
@@ -34,6 +34,7 @@ namespace PedidoApi.Models
                     {
                         DocumentoItem  = new documento();
                         DocumentoItem.documentoid = (int)dataReader["documentoid"];
+                        DocumentoItem.clase = (string)dataReader["clase"];
                         DocumentoItem.tipo = (string)dataReader["tipo"];
                         DocumentoItem.descripcion = (string)dataReader["descripcion"];
                         DocumentoItem.numero = (int)dataReader["numero"];
