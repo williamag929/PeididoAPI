@@ -23,6 +23,8 @@ namespace PedidoApi.Models
         public decimal? peso { get; set; }
         public decimal ordenado {get; set;}
         public decimal existencia {get; set;}
+        public decimal cantprom {get;set;}
+        public decimal porc_descprom {get;set;} 
 
     }
 }

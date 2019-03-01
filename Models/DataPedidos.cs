@@ -62,6 +62,12 @@ namespace PedidoApi.Models
                         else
                             vpedidoItem.ped_desc = 0;
 
+                        
+                        if (dataReader["DESCUENTO"] != DBNull.Value)
+                            vpedidoItem.descuento = (decimal)dataReader["DESCUENTO"];
+                        else
+                            vpedidoItem.descuento = 0;    
+
                         if (dataReader["PED_SUBTOTAL"] != DBNull.Value)
                             vpedidoItem.ped_subtotal = (decimal)dataReader["PED_SUBTOTAL"];
                         else
@@ -198,6 +204,16 @@ namespace PedidoApi.Models
                         if (dataReader["PED_FEC_ENT"] != DBNull.Value)
                             vpedidoItem.ped_fec_ent = (DateTime)dataReader["PED_FEC_ENT"];
 
+                        if (dataReader["PED_DESC"] != DBNull.Value)
+                            vpedidoItem.ped_desc = (decimal)dataReader["PED_DESC"];
+                        else
+                            vpedidoItem.ped_desc = 0;
+
+                        if (dataReader["DESCUENTO"] != DBNull.Value)
+                            vpedidoItem.descuento = (decimal)dataReader["DESCUENTO"];
+                        else
+                            vpedidoItem.descuento = 0;        
+
 
                         if (dataReader["PED_SUBTOTAL"] != DBNull.Value)
                             vpedidoItem.ped_subtotal = (decimal)dataReader["PED_SUBTOTAL"];
@@ -257,6 +273,7 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_impuesto", Model.ped_impuesto));
             parameterList.Add(base.GetParameter("ped_total", Model.ped_total));
             parameterList.Add(base.GetParameter("ped_desc", Model.ped_desc));
+            parameterList.Add(base.GetParameter("descuento", Model.descuento));
             parameterList.Add(base.GetParameter("ped_procesado", 0));
             parameterList.Add(base.GetParameter("ped_closed", 0));
             parameterList.Add(base.GetParameter("ped_note", Model.ped_note));
@@ -294,6 +311,7 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_subtotal", Model.ped_subtotal));
             parameterList.Add(base.GetParameter("ped_impuesto", Model.ped_impuesto));
             parameterList.Add(base.GetParameter("ped_total", Model.ped_total));
+            parameterList.Add(base.GetParameter("descuento", Model.descuento));            
             parameterList.Add(base.GetParameter("ped_desc", Model.ped_desc));
             parameterList.Add(base.GetParameter("ped_procesado", Model.ped_procesado));
             parameterList.Add(base.GetParameter("ped_closed", Model.ped_closed));
@@ -332,6 +350,7 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_lastupdate", Model.ped_lastupdate));
             parameterList.Add(base.GetParameter("ped_closed", Model.ped_closed));
             parameterList.Add(base.GetParameter("ped_note", Model.ped_note));
+            parameterList.Add(base.GetParameter("descuento", Model.descuento));
             parameterList.Add(base.GetParameter("option", 3));
 
 

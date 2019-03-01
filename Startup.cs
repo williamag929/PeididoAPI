@@ -52,10 +52,10 @@ namespace PedidoApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-
+            //builder.WithOrigins("http://localhost:8100")
              // Shows UseCors with CorsPolicyBuilder.
             app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:8100")
+            builder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod());
 

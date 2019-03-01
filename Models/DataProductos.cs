@@ -72,8 +72,19 @@ namespace PedidoApi.Models
                         if (dataReader["EXISTENCIA"] != DBNull.Value)  
                             productoItem.existencia = (decimal)dataReader["EXISTENCIA"];
                         else
-                            productoItem.existencia = 0;                            
+                            productoItem.existencia = 0;    
 
+
+                        if (dataReader["CANTPROM"] != DBNull.Value)  
+                            productoItem.cantprom = (decimal)dataReader["CANTPROM"];
+                        else
+                            productoItem.cantprom = 0;
+
+                        if (dataReader["PORC_DESCPROM"] != DBNull.Value)  
+                            productoItem.porc_descprom = (decimal)dataReader["PORC_DESCPROM"];
+                        else
+                            productoItem.porc_descprom = 0;
+                            
                         productos.Add(productoItem);
                     }
                 }

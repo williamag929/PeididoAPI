@@ -37,6 +37,7 @@ namespace PedidoApi.Models
         public DateTime ped_fec_ent { get; set; }
 
         public decimal ped_desc { get; set; }
+        public decimal descuento {get;set;}
         public decimal ped_subtotal { get; set; }
         public decimal ped_impuesto { get; set; }
         public decimal ped_total { get; set; }
@@ -62,6 +63,7 @@ namespace PedidoApi.Models
         public decimal ped_impuesto { get; set; }
         public decimal ped_total { get; set; }
         public decimal ped_desc { get; set; }
+        public decimal descuento {get;set;}
         public bool ped_procesado { get; set; }
         public DateTime ped_lastupdate { get; set; }
         public bool ped_closed { get; set; }
