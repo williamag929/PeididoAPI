@@ -33,7 +33,7 @@ namespace PedidoApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public JsonResult GetVendedor(int vend_id)
+        public JsonResult GetVendedor(int id)
         {
             var constr = _options.constr;
 
@@ -41,11 +41,12 @@ namespace PedidoApi.Controllers
 
             var vendedores = _data.GetVendedores();
 
-            //var item = vendedores.Where(x=>x.vend_id == vend_id).First();
+
+            var item = vendedores.Where(x=>x.vend_id == id).First();
 
             //var usuario = _data.GetVendedor(user);
 
-            return Json(vendedores.First(c => c.vend_id == vend_id));
+            return Json(item);
         }
 
     }

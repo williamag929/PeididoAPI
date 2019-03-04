@@ -11,6 +11,8 @@ namespace PedidoApi.Models
         public string password { get; set; }
         public string email { get; set; }
         public string vend_email { get; set; }
+        public bool modprecio {get;set;}
+        public bool verexistencia {get;set;}
 
     }
 

@@ -45,7 +45,10 @@ namespace PedidoApi.Models
         public string vend_zona { get; set; }
         public bool ped_procesado { get; set; }
         public bool ped_closed { get; set; }
-
+        public string ped_note {get;set;}
+        public string formapago {get;set;}
+        public int plazo {get;set;}
+        public string direccionentr {get;set;}
 
     }
 
@@ -68,6 +71,9 @@ namespace PedidoApi.Models
         public DateTime ped_lastupdate { get; set; }
         public bool ped_closed { get; set; }
         public string ped_note { get; set; }
+        public string formapago {get;set;}
+        public int plazo {get;set;}
+        public string direccionentr {get;set;}
     }
 
     public class ped_det

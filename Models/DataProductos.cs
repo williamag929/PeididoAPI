@@ -76,7 +76,7 @@ namespace PedidoApi.Models
 
 
                         if (dataReader["CANTPROM"] != DBNull.Value)  
-                            productoItem.cantprom = (decimal)dataReader["CANTPROM"];
+                            productoItem.cantprom = (int)dataReader["CANTPROM"];
                         else
                             productoItem.cantprom = 0;
 
@@ -84,7 +84,7 @@ namespace PedidoApi.Models
                             productoItem.porc_descprom = (decimal)dataReader["PORC_DESCPROM"];
                         else
                             productoItem.porc_descprom = 0;
-                            
+
                         productos.Add(productoItem);
                     }
                 }
