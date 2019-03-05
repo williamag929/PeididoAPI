@@ -27,4 +27,16 @@ namespace PedidoApi.Models
         public decimal? porc_descprom {get;set;} 
 
     }
+
+    public class vproducto
+    {
+        public string pro_id { get; set; }
+        public string pro_nom { get; set; }
+        public string pro_und { get; set; }
+        public decimal precio {get; set;}
+        public decimal ordenado {get; set;}
+        public decimal existencia {get; set;}
+    }
+
+
 }
