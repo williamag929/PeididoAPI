@@ -23,8 +23,20 @@ namespace PedidoApi.Models
         public decimal? peso { get; set; }
         public decimal ordenado {get; set;}
         public decimal existencia {get; set;}
-        public decimal cantprom {get;set;}
-        public decimal porc_descprom {get;set;} 
+        public int? cantprom {get;set;}
+        public decimal? porc_descprom {get;set;} 
 
     }
+
+    public class vproducto
+    {
+        public string pro_id { get; set; }
+        public string pro_nom { get; set; }
+        public string pro_und { get; set; }
+        public decimal precio {get; set;}
+        public decimal ordenado {get; set;}
+        public decimal existencia {get; set;}
+    }
+
+
 }

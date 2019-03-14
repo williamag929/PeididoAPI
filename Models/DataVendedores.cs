@@ -93,6 +93,17 @@ namespace PedidoApi.Models
                         else
                             vendedorItem.vend_email = "";
 
+                        if (dataReader["MODPRECIO"] != DBNull.Value)
+                            vendedorItem.modprecio = (bool)dataReader["MODPRECIO"];
+                        else
+                            vendedorItem.modprecio = false;
+
+                        if (dataReader["VEREXISTENCIA"] != DBNull.Value)
+                            vendedorItem.verexistencia = (bool)dataReader["VEREXISTENCIA"];
+                        else
+                            vendedorItem.verexistencia = false;
+
+
                         vendedores.Add(vendedorItem);
                     }
                 }

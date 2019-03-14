@@ -93,6 +93,16 @@ namespace PedidoApi.Models
                         else
                             vpedidoItem.vend_zona = "";
 
+                        if (dataReader["FORMAPAGO"] != DBNull.Value)
+                            vpedidoItem.formapago = (string)dataReader["FORMAPAGO"];
+                        else
+                            vpedidoItem.formapago = "";
+
+                        if (dataReader["PLAZO"] != DBNull.Value)
+                            vpedidoItem.plazo = (int)dataReader["PLAZO"];
+                        else
+                            vpedidoItem.plazo = 0;        
+
 
                         vpedidoItem.ped_procesado = (bool)dataReader["PED_PROCESADO"];
 
@@ -101,6 +111,16 @@ namespace PedidoApi.Models
                             vpedidoItem.ped_closed = (bool)dataReader["PED_CLOSED"];
                         else
                             vpedidoItem.ped_closed = false;
+
+                        if (dataReader["PED_NOTE"] != DBNull.Value)
+                            vpedidoItem.ped_note = (string)dataReader["PED_NOTE"];
+                        else
+                            vpedidoItem.ped_note = "";
+
+                        if (dataReader["DIRECCIONENTR"] != DBNull.Value)
+                            vpedidoItem.direccionentr = (string)dataReader["DIRECCIONENTR"];
+                        else
+                            vpedidoItem.direccionentr = "";    
 
                         //if (dataReader["PESO"] != DBNull.Value)  
                         //    productoItem.peso = (decimal)dataReader["PESO"];
@@ -172,9 +192,14 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_impuesto", null));
             parameterList.Add(base.GetParameter("ped_total", null));
             parameterList.Add(base.GetParameter("ped_desc", null));
+            parameterList.Add(base.GetParameter("descuento", null));
             parameterList.Add(base.GetParameter("ped_procesado", null));
             parameterList.Add(base.GetParameter("ped_closed", null));
             parameterList.Add(base.GetParameter("ped_note", null));
+            parameterList.Add(base.GetParameter("formapago", null));
+            parameterList.Add(base.GetParameter("plazo", null));
+            parameterList.Add(base.GetParameter("direccionentr",null));
+
 
             parameterList.Add(base.GetParameter("new_ped_id", null));
 
@@ -237,6 +262,27 @@ namespace PedidoApi.Models
                         else
                             vpedidoItem.ped_closed = false;
 
+                        if (dataReader["PED_NOTE"] != DBNull.Value)
+                            vpedidoItem.ped_note = (string)dataReader["PED_NOTE"];
+                        else
+                            vpedidoItem.ped_note = "";
+
+                        if (dataReader["FORMAPAGO"] != DBNull.Value)
+                            vpedidoItem.formapago = (string)dataReader["FORMAPAGO"];
+                        else
+                            vpedidoItem.formapago = "";
+
+                        if (dataReader["PLAZO"] != DBNull.Value)
+                            vpedidoItem.plazo = (int)dataReader["PLAZO"];
+                        else
+                            vpedidoItem.plazo = 0;   
+
+                        if (dataReader["DIRECCIONENTR"] != DBNull.Value)
+                            vpedidoItem.direccionentr = (string)dataReader["DIRECCIONENTR"];
+                        else
+                            vpedidoItem.direccionentr = "";                                
+
+
 
 
                         //if (dataReader["PESO"] != DBNull.Value)  
@@ -277,6 +323,9 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_procesado", 0));
             parameterList.Add(base.GetParameter("ped_closed", 0));
             parameterList.Add(base.GetParameter("ped_note", Model.ped_note));
+            parameterList.Add(base.GetParameter("formapago", Model.formapago));
+            parameterList.Add(base.GetParameter("plazo", Model.plazo));
+            parameterList.Add(base.GetParameter("direccionentr", Model.direccionentr));            
             parameterList.Add(base.GetParameter("option", 1));
 
 
@@ -316,6 +365,9 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_procesado", Model.ped_procesado));
             parameterList.Add(base.GetParameter("ped_closed", Model.ped_closed));
             parameterList.Add(base.GetParameter("ped_note", Model.ped_note));
+            parameterList.Add(base.GetParameter("formapago", Model.formapago));
+            parameterList.Add(base.GetParameter("plazo", Model.plazo));
+            parameterList.Add(base.GetParameter("direccionentr", Model.direccionentr)); 
             parameterList.Add(base.GetParameter("option", 2));
 
 
@@ -351,6 +403,9 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("ped_closed", Model.ped_closed));
             parameterList.Add(base.GetParameter("ped_note", Model.ped_note));
             parameterList.Add(base.GetParameter("descuento", Model.descuento));
+            parameterList.Add(base.GetParameter("formapago", Model.formapago));
+            parameterList.Add(base.GetParameter("plazo", Model.plazo));   
+            parameterList.Add(base.GetParameter("direccionentr", Model.direccionentr));                      
             parameterList.Add(base.GetParameter("option", 3));
 
 

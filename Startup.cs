@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
 namespace PedidoApi
 {
     public class Startup
@@ -22,10 +18,10 @@ namespace PedidoApi
                 Configuration = builder.Build();
 
 
-        Console.WriteLine($"option1 = {Configuration["option1"]}");
-        Console.WriteLine($"option2 = {Configuration["option2"]}");
-        Console.WriteLine($"constr = {Configuration["constr"]}");
-        Console.WriteLine();
+        //Console.WriteLine($"option1 = {Configuration["option1"]}");
+        //Console.WriteLine($"option2 = {Configuration["option2"]}");
+        //Console.WriteLine($"constr = {Configuration["constr"]}");
+        //Console.WriteLine();
 
 
         }
@@ -35,18 +31,15 @@ namespace PedidoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adds services required for using options.
+            services.AddOptions();
+            // Register the IConfiguration instance which MyOptions binds against.
+            services.Configure<Models.MyOptions>(Configuration);
+            //Add framework services.
+            //services.Configure<Models.MyOptions>(Configuration);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-        // Adds services required for using options.
-        services.AddOptions();
-
-        // Register the IConfiguration instance which MyOptions binds against.
-        services.Configure<Models.MyOptions>(Configuration);
-
-            // Add framework services.
-            services.AddMvc();
             services.AddCors();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +51,14 @@ namespace PedidoApi
             builder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod());
+
+            app.UseCors(builder =>
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
+
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
