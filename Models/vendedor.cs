@@ -13,6 +13,7 @@ namespace PedidoApi.Models
         public string vend_email { get; set; }
         public bool modprecio {get;set;}
         public bool verexistencia {get;set;}
+        public bool validaexistencia {get;set;}
 
     }
 

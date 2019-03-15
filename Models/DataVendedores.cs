@@ -103,6 +103,12 @@ namespace PedidoApi.Models
                         else
                             vendedorItem.verexistencia = false;
 
+                        if (dataReader["VALIDAEXISTENCIA"] != DBNull.Value)
+                            vendedorItem.validaexistencia = (bool)dataReader["VALIDAEXISTENCIA"];
+                        else
+                            vendedorItem.validaexistencia  = false;
+
+
 
                         vendedores.Add(vendedorItem);
                     }

@@ -34,15 +34,27 @@ namespace PedidoApi.Models
                     {
                         ClienteItem = new Cliente();
                         ClienteItem.cli_id = (int)dataReader["CLI_ID"];
-                        ClienteItem.cli_suc = (int)dataReader["CLI_SUC"];
-                        ClienteItem.cli_nit = (string)dataReader["CLI_NIT"];
-                        ClienteItem.cli_nombre = (string)dataReader["CLI_NOMBRE"];
-                        ClienteItem.cli_direccion = (string)dataReader["CLI_DIRECCION"];
-                        ClienteItem.cli_ciudad = (string)dataReader["CLI_CIUDAD"];
-                        ClienteItem.cli_depto = (string)dataReader["CLI_DEPTO"];
-                        ClienteItem.cli_pais = (string)dataReader["CLI_PAIS"];
-                        ClienteItem.cli_phone1 = (string)dataReader["CLI_PHONE1"];
-                        ClienteItem.cli_phone2 = (string)dataReader["CLI_PHONE2"];
+                        if (dataReader["CLI_SUC"] != DBNull.Value)
+                            ClienteItem.cli_suc = (int)dataReader["CLI_SUC"];
+                        else 
+                            ClienteItem.cli_suc = 0;
+
+                        if (dataReader["CLI_NIT"] != DBNull.Value)    
+                            ClienteItem.cli_nit = (string)dataReader["CLI_NIT"];
+                        if (dataReader["CLI_NOMBRE"] != DBNull.Value)
+                            ClienteItem.cli_nombre = (string)dataReader["CLI_NOMBRE"];
+                        if (dataReader["CLI_DIRECCION"] != DBNull.Value)
+                            ClienteItem.cli_direccion = (string)dataReader["CLI_DIRECCION"];
+                        if (dataReader["CLI_CIUDAD"] != DBNull.Value)
+                            ClienteItem.cli_ciudad = (string)dataReader["CLI_CIUDAD"];
+                        if (dataReader["CLI_DEPTO"] != DBNull.Value)
+                            ClienteItem.cli_depto = (string)dataReader["CLI_DEPTO"];
+                        if (dataReader["CLI_PAIS"] != DBNull.Value)
+                            ClienteItem.cli_pais = (string)dataReader["CLI_PAIS"];
+                        if (dataReader["CLI_PHONE1"] != DBNull.Value)
+                            ClienteItem.cli_phone1 = (string)dataReader["CLI_PHONE1"];
+                        if (dataReader["CLI_PHONE2"] != DBNull.Value)
+                            ClienteItem.cli_phone2 = (string)dataReader["CLI_PHONE2"];
 
 
                         try
@@ -51,7 +63,7 @@ namespace PedidoApi.Models
                         }
                         catch
                         {
-
+                            ClienteItem.cli_cupo = 0;
                         }
 
                         ClienteItem.cli_estado = (string)dataReader["CLI_ESTADO"];
@@ -62,19 +74,28 @@ namespace PedidoApi.Models
                         }
                         catch
                         {
-
+                            ClienteItem.cli_orden = 0;
                         }
 
-                        ClienteItem.cli_email = (string)dataReader["CLI_EMAIL"];
-                        ClienteItem.lista_id = (string)dataReader["LISTA_ID"];
+                        if (dataReader["CLI_EMAIL"] != DBNull.Value)
+                            ClienteItem.cli_email = (string)dataReader["CLI_EMAIL"];
+
+                        if (dataReader["CLI_EMAIL"] != DBNull.Value) 
+                            ClienteItem.lista_id = (string)dataReader["LISTA_ID"];
+                        else
+                            ClienteItem.lista_id = "1";
+
                         try
                         {
                             ClienteItem.vend_id = (int)dataReader["VEND_ID"];
                         }
                         catch { }
-                        ClienteItem.nivel = (string)dataReader["NIVEL"];
+                        if (dataReader["CLI_EMAIL"] != DBNull.Value) 
+                            ClienteItem.nivel = (string)dataReader["NIVEL"];
+
                         if (dataReader["COD_NIVEL"] != DBNull.Value)
                             ClienteItem.cod_nivel = (string)dataReader["COD_NIVEL"];
+
                         if (dataReader["DESCUENTO"] != DBNull.Value)
                             ClienteItem.descuento = (decimal)dataReader["DESCUENTO"];
 
@@ -102,17 +123,41 @@ namespace PedidoApi.Models
                     while (dataReader.Read())
                     {
                         ClienteItem = new Cliente();
+                       
+                          ClienteItem = new Cliente();
                         ClienteItem.cli_id = (int)dataReader["CLI_ID"];
-                        ClienteItem.cli_suc = (int)dataReader["CLI_SUC"];
-                        ClienteItem.cli_nit = (string)dataReader["CLI_NIT"];
-                        ClienteItem.cli_nombre = (string)dataReader["CLI_NOMBRE"];
-                        ClienteItem.cli_direccion = (string)dataReader["CLI_DIRECCION"];
-                        ClienteItem.cli_ciudad = (string)dataReader["CLI_CIUDAD"];
-                        ClienteItem.cli_depto = (string)dataReader["CLI_DEPTO"];
-                        ClienteItem.cli_pais = (string)dataReader["CLI_PAIS"];
-                        ClienteItem.cli_phone1 = (string)dataReader["CLI_PHONE1"];
-                        ClienteItem.cli_phone2 = (string)dataReader["CLI_PHONE2"];
-                        ClienteItem.cli_cupo = (decimal)dataReader["CLI_CUPO"];
+                        if (dataReader["CLI_SUC"] != DBNull.Value)
+                            ClienteItem.cli_suc = (int)dataReader["CLI_SUC"];
+                        else 
+                            ClienteItem.cli_suc = 0;
+
+                        if (dataReader["CLI_NIT"] != DBNull.Value)    
+                            ClienteItem.cli_nit = (string)dataReader["CLI_NIT"];
+                        if (dataReader["CLI_NOMBRE"] != DBNull.Value)
+                            ClienteItem.cli_nombre = (string)dataReader["CLI_NOMBRE"];
+                        if (dataReader["CLI_DIRECCION"] != DBNull.Value)
+                            ClienteItem.cli_direccion = (string)dataReader["CLI_DIRECCION"];
+                        if (dataReader["CLI_CIUDAD"] != DBNull.Value)
+                            ClienteItem.cli_ciudad = (string)dataReader["CLI_CIUDAD"];
+                        if (dataReader["CLI_DEPTO"] != DBNull.Value)
+                            ClienteItem.cli_depto = (string)dataReader["CLI_DEPTO"];
+                        if (dataReader["CLI_PAIS"] != DBNull.Value)
+                            ClienteItem.cli_pais = (string)dataReader["CLI_PAIS"];
+                        if (dataReader["CLI_PHONE1"] != DBNull.Value)
+                            ClienteItem.cli_phone1 = (string)dataReader["CLI_PHONE1"];
+                        if (dataReader["CLI_PHONE2"] != DBNull.Value)
+                            ClienteItem.cli_phone2 = (string)dataReader["CLI_PHONE2"];
+
+
+                        try
+                        {
+                            ClienteItem.cli_cupo = (decimal)dataReader["CLI_CUPO"];
+                        }
+                        catch
+                        {
+                            ClienteItem.cli_cupo = 0;
+                        }
+
                         ClienteItem.cli_estado = (string)dataReader["CLI_ESTADO"];
 
                         try
@@ -121,19 +166,28 @@ namespace PedidoApi.Models
                         }
                         catch
                         {
-
+                            ClienteItem.cli_orden = 0;
                         }
 
-                        ClienteItem.cli_email = (string)dataReader["CLI_EMAIL"];
-                        ClienteItem.lista_id = (string)dataReader["LISTA_ID"];
+                        if (dataReader["CLI_EMAIL"] != DBNull.Value)
+                            ClienteItem.cli_email = (string)dataReader["CLI_EMAIL"];
+
+                        if (dataReader["CLI_EMAIL"] != DBNull.Value) 
+                            ClienteItem.lista_id = (string)dataReader["LISTA_ID"];
+                        else
+                            ClienteItem.lista_id = "1";
+
                         try
                         {
                             ClienteItem.vend_id = (int)dataReader["VEND_ID"];
                         }
                         catch { }
-                        ClienteItem.nivel = (string)dataReader["NIVEL"];
+                        if (dataReader["CLI_EMAIL"] != DBNull.Value) 
+                            ClienteItem.nivel = (string)dataReader["NIVEL"];
+
                         if (dataReader["COD_NIVEL"] != DBNull.Value)
                             ClienteItem.cod_nivel = (string)dataReader["COD_NIVEL"];
+                            
                         if (dataReader["DESCUENTO"] != DBNull.Value)
                             ClienteItem.descuento = (decimal)dataReader["DESCUENTO"];
 
