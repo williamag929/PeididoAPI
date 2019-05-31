@@ -191,7 +191,8 @@ namespace PedidoApi.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-
+        ///marca el pedido como cerrado
+        ///validacion de descuento
         [HttpPost]
         public IActionResult SendPdf([FromBody]  ped_enc model)
         {

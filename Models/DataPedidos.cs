@@ -164,19 +164,14 @@ namespace PedidoApi.Models
                         Model.subject = (string)dataReader["subject"];
                         Model.body = (string)dataReader["body"];
                     }
-
-
                     Console.WriteLine(Model.texto1);
                 }
             }
-
             return Model;
-
         }
         public ped_enc GetPedidobyId(int ped_id)
         {
             //Console.WriteLine(ped_id.ToString());
-
             var Model = new ped_enc();
             List<DbParameter> parameterList = new List<DbParameter>();
             parameterList.Add(base.GetParameter("option", 0));
