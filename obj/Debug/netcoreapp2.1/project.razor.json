@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
   "FilePath": "d:\\WorkSpace\\netcore\\PeididoAPI\\PedidoApi.csproj",
+=======
+  "ProjectFilePath": "/Users/usuario/Documents/GitHub/PeididoAPI/PedidoApi.csproj",
+  "TargetFramework": "netcoreapp2.1",
+  "TagHelpers": [],
+>>>>>>> ed7fc60d7831aa6b23016440339fab353a73d8b4
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
