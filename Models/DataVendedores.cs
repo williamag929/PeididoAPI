@@ -103,6 +103,16 @@ namespace PedidoApi.Models
                         else
                             vendedorItem.verexistencia = false;
 
+                        if (dataReader["VERFORMAPAGO"] != DBNull.Value)
+                            vendedorItem.verformapago = (bool)dataReader["VERFORMAPAGO"];
+                        else
+                            vendedorItem.verformapago = false;
+
+                        if (dataReader["VERPLAZO"] != DBNull.Value)
+                            vendedorItem.verplazo = (bool)dataReader["VERPLAZO"];
+                        else
+                            vendedorItem.verplazo = false;                                                        
+
                         if (dataReader["VALIDAEXISTENCIA"] != DBNull.Value)
                             vendedorItem.validaexistencia = (bool)dataReader["VALIDAEXISTENCIA"];
                         else

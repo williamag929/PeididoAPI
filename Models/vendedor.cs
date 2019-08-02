@@ -14,6 +14,10 @@ namespace PedidoApi.Models
         public bool modprecio {get;set;}
         public bool verexistencia {get;set;}
         public bool validaexistencia {get;set;}
+        public bool verformapago {get;set;}
+        public bool verplazo {get;set;}
+
+
 
     }
 
