@@ -11,8 +11,6 @@ using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Http;
 
 namespace PedidoApi.Controllers
 {
@@ -87,7 +85,7 @@ namespace PedidoApi.Controllers
                     int orderNo = Convert.ToInt32(p.ped_numero);
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<table width='100%' cellspacing='0' cellpadding='2'>");
-                    sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>Pedido de Venta Industrias Yilop</b></td></tr>");
+                    sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>Pedido de Venta</b></td></tr>");
                     sb.Append("<tr><td colspan = '2'></td></tr>");
                     sb.Append("<tr><td><b>Pedido No:</b>");
                     sb.Append(orderNo);

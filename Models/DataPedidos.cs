@@ -1,13 +1,8 @@
 using System;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PedidoApi.Models;
 
 namespace PedidoApi.Models
 {
@@ -142,7 +137,7 @@ namespace PedidoApi.Models
             var Model = new Config();
             Console.WriteLine("Leyendo");
             List<DbParameter> parameterList = new List<DbParameter>();
-            parameterList.Add(base.GetParameter("option", 1));
+            //parameterList.Add(base.GetParameter("option", 1));
             using (DbDataReader dataReader = base.GetDataReader("Get_Config", parameterList, CommandType.StoredProcedure))
             {
                 if (dataReader != null && dataReader.HasRows)

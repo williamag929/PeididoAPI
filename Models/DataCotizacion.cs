@@ -1,13 +1,9 @@
 using System;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PedidoApi.Models;
+
 
 
 namespace PedidoApi.Models
@@ -258,6 +254,38 @@ namespace PedidoApi.Models
             Model.cot_id = (int)IdParamter.Value;
 
             return Model;
+        }
+
+        public cot_enc cot_generarpedido(cot_enc Model)
+        {
+
+            Console.WriteLine("Actualiza Cotizacion " + Model.cot_id);
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            DbParameter IdParamter = base.GetParameterOut("new_ped_id", SqlDbType.Int, Model.cot_id);
+            parameterList.Add(IdParamter);
+            parameterList.Add(base.GetParameter("cot_id", Model.cot_id));
+            parameterList.Add(base.GetParameter("cot_tipo", Model.cot_tipo));
+            parameterList.Add(base.GetParameter("cot_numero", Model.cot_numero));
+            parameterList.Add(base.GetParameter("cli_id", Model.cli_id));
+            parameterList.Add(base.GetParameter("cli_suc", Model.cli_suc));
+            parameterList.Add(base.GetParameter("vend_id", Model.vend_id));
+            parameterList.Add(base.GetParameter("cot_fecha", Model.cot_fecha));
+            parameterList.Add(base.GetParameter("cot_fec_ent", Model.cot_fec_ent));
+            parameterList.Add(base.GetParameter("cot_subtotal", Model.cot_subtotal));
+            parameterList.Add(base.GetParameter("cot_impuesto", Model.cot_impuesto));
+            parameterList.Add(base.GetParameter("cot_total", Model.cot_total));
+            parameterList.Add(base.GetParameter("cot_desc", Model.cot_desc));
+            parameterList.Add(base.GetParameter("cot_note", Model.cot_note));
+
+
+            base.ExecuteNonQuery("sp_Cot_Pedido", parameterList, CommandType.StoredProcedure);
+
+            //Model.cot_id = (int)IdParamter.Value;
+
+            return Model;
+
         }
 
 

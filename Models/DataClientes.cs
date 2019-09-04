@@ -172,7 +172,7 @@ namespace PedidoApi.Models
                         if (dataReader["CLI_EMAIL"] != DBNull.Value)
                             ClienteItem.cli_email = (string)dataReader["CLI_EMAIL"];
 
-                        if (dataReader["CLI_EMAIL"] != DBNull.Value) 
+                        if (dataReader["LISTA_ID"] != DBNull.Value) 
                             ClienteItem.lista_id = (string)dataReader["LISTA_ID"];
                         else
                             ClienteItem.lista_id = "1";

@@ -11,8 +11,7 @@ using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Http;
+
 
 namespace PedidoApi.Controllers
 {
@@ -87,7 +86,7 @@ namespace PedidoApi.Controllers
                     int orderNo = Convert.ToInt32(p.cot_numero);
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<table width='100%' cellspacing='0' cellpadding='2'>");
-                    sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>Cotizacion de Venta Industrias Yilop</b></td></tr>");
+                    sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>Cotizacion de Venta "+config.empresa+" </b></td></tr>");
                     sb.Append("<tr><td colspan = '2'></td></tr>");
                     sb.Append("<tr><td><b>Cotizacion No:</b>");
                     sb.Append(orderNo);
@@ -206,10 +205,10 @@ namespace PedidoApi.Controllers
 
             var p = _data.GetCotizacionbyId(model.cot_id);
 
-            //model.cot_closed = true;
+            _data.cot_generarpedido(model);
 
             //todo: actualizar con modelo recibido para enviar notas
-            _data.UpdateCotizacion(model);
+            //_data.UpdateCotizacion(model);
 
             try
             {
