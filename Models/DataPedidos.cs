@@ -164,6 +164,8 @@ namespace PedidoApi.Models
             }
             return Model;
         }
+
+        ///traer pedido por id
         public ped_enc GetPedidobyId(int ped_id)
         {
             //Console.WriteLine(ped_id.ToString());
@@ -287,7 +289,7 @@ namespace PedidoApi.Models
 
         }
 
-
+        ///Crea encabezado Pedido
         public ped_enc CreatePedido(ped_enc Model)
         {
 
