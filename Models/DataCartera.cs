@@ -17,6 +17,7 @@ namespace PedidoApi.Models
         {
         }
 
+        //consulta cartera
         public List<Cartera> GetCartera(int cli_nit)
         {
             List<Cartera> carteras = new List<Cartera>();
@@ -57,5 +58,104 @@ namespace PedidoApi.Models
             }
             return carteras;
         }
+
+
+        #region crud
+        ///traer pedido por id
+        public cart_enc GetCarterabyId(int comprobanteid)
+        {
+            var Model = new cart_enc();
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(base.GetParameter("option", 0));
+            parameterList.Add(base.GetParameter("comprobanteid", comprobanteid));
+            parameterList.Add(base.GetParameter("tipodocid ", null));
+            parameterList.Add(base.GetParameter("numero", null));
+            parameterList.Add(base.GetParameter("prefijo", null));
+            parameterList.Add(base.GetParameter("fecha", null));
+            parameterList.Add(base.GetParameter("clienteid", null));
+            parameterList.Add(base.GetParameter("sucursalid", null));
+            parameterList.Add(base.GetParameter("fechains", null));
+            parameterList.Add(base.GetParameter("fechamod", null));
+            parameterList.Add(base.GetParameter("vendid", null));
+            parameterList.Add(base.GetParameter("totalrecibido", null));
+            parameterList.Add(base.GetParameter("estado", null));
+            parameterList.Add(base.GetParameter("new_comprobanteid", null));
+
+            var vcarteraItem = new cart_enc();
+
+            using (DbDataReader dataReader = base.GetDataReader("sp_comprobante", parameterList, CommandType.StoredProcedure))
+            {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        vcarteraItem = new cart_enc();
+                        vcarteraItem.comprobanteid = (int)dataReader["COMPROBANTEID"];
+                        vcarteraItem.tipodocid = (int)dataReader["TIPODOCID"];
+                        vcarteraItem.numero = (int)dataReader["NUMERO"];
+                        vcarteraItem.prefijo = (string)dataReader["PREFIJO"];
+                        vcarteraItem.fecha = (DateTime)dataReader["FECHA"];
+                        vcarteraItem.clienteid = (int)dataReader["CLIENTEID"];
+                        vcarteraItem.sucursalid = (int)dataReader["SUCURSALID"];
+                        vcarteraItem.fechains = (DateTime)dataReader["FECHAINS"];
+                        vcarteraItem.fechamod = (DateTime)dataReader["FECHAMOD"];
+                        vcarteraItem.vendid = (int)dataReader["VENDID"];
+                        vcarteraItem.totalrecibido = (float)dataReader["TOTALRECIBIDO"];
+                        vcarteraItem.estado = (char)dataReader["ESTADO"];
+                    }
+                }
+            }
+            return vcarteraItem;
+        }
+
+        ///Crea encabezado comprobante
+        public cart_enc CreateCartera(cart_enc Model)
+        {
+
+            Console.WriteLine("Crea Comprobante " + Model.prefijo);
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            DbParameter IdParamter = base.GetParameterOut("new_comprobanteid", SqlDbType.Int, Model.comprobanteid);
+            parameterList.Add(IdParamter);
+            parameterList.Add(base.GetParameter("comprobanteid", Model.comprobanteid));
+            parameterList.Add(base.GetParameter("tipodocid", Model.tipodocid));
+            parameterList.Add(base.GetParameter("numero", Model.numero));
+            parameterList.Add(base.GetParameter("prefijo", Model.prefijo));
+            parameterList.Add(base.GetParameter("fecha", Model.fecha));
+            parameterList.Add(base.GetParameter("clienteid", Model.clienteid));
+            parameterList.Add(base.GetParameter("sucursalid", Model.sucursalid));
+            parameterList.Add(base.GetParameter("fechains", Model.fechains));
+            parameterList.Add(base.GetParameter("fechamod", Model.fechamod));
+            parameterList.Add(base.GetParameter("vendid ", Model.vendid ));
+            parameterList.Add(base.GetParameter("totalrecibido ", Model.totalrecibido ));
+            parameterList.Add(base.GetParameter("estado", Model.estado));           
+            parameterList.Add(base.GetParameter("option", 1));
+
+
+            base.ExecuteNonQuery("sp_comprobante", parameterList, CommandType.StoredProcedure);
+
+            Model.comprobanteid = (int)IdParamter.Value;
+
+            return Model;
+        }
+
+        public cart_det GetCarteradetbyId(int comprobanteid)
+        {
+             var vcarteradetItem = new cart_det();
+
+            return vcarteradetItem;
+        }
+        public cart_det CreateCarteradet(cart_det Model)
+        {
+            return Model;
+        }
+
+
+        public cart_det DeleteCarteradet(cart_det Model)
+        {
+            return Model;
+        }
+        #endregion
     }
 }
