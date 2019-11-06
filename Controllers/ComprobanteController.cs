@@ -43,7 +43,7 @@ namespace PedidoApi.Controllers
             }
             else
             {
-                model = _data.UpdateCartera(model);
+                // model = _data.UpdateCartera(model);
             }
             return Json(model);
         }

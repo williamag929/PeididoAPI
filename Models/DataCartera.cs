@@ -93,7 +93,7 @@ namespace PedidoApi.Models
                         vcarteraItem.comprobanteid = (int)dataReader["COMPROBANTEID"];
                         vcarteraItem.tipodocid = (int)dataReader["TIPODOCID"];
                         vcarteraItem.numero = (int)dataReader["NUMERO"];
-                        vcarteraItem.prefijo = (var)dataReader["PREFIJO"];
+                        vcarteraItem.prefijo = (string)dataReader["PREFIJO"];
                         vcarteraItem.fecha = (DateTime)dataReader["FECHA"];
                         vcarteraItem.clienteid = (int)dataReader["CLIENTEID"];
                         vcarteraItem.sucursalid = (int)dataReader["SUCURSALID"];
@@ -140,6 +140,22 @@ namespace PedidoApi.Models
             return Model;
         }
 
+        public cart_det GetCarteradetbyId(int comprobanteid)
+        {
+             var vcarteradetItem = new cart_det();
+
+            return vcarteradetItem;
+        }
+        public cart_det CreateCarteradet(cart_det Model)
+        {
+            return Model;
+        }
+
+
+        public cart_det DeleteCarteradet(cart_det Model)
+        {
+            return Model;
+        }
         #endregion
     }
 }

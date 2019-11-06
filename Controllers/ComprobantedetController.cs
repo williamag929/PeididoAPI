@@ -41,13 +41,13 @@ namespace PedidoApi.Controllers
             _data = new DataCartera(constr);
             _datacli = new DataClientes(constr);
 
-            if (model.cart_det_id == 0)
+            if (model.comprobantedetid == 0)
             {
                 model = _data.CreateCarteradet(model);
             }
             else
             {
-                model = _data.UpdateCarteradet(model);
+                // model = _data.UpdateCarteradet(model);
             }
 
             return Json(model);
@@ -63,7 +63,7 @@ namespace PedidoApi.Controllers
 
             Console.WriteLine(id.ToString());
 
-            var cartera = _data.GetCarterabyId(id);
+            var cartera = _data.GetCarteradetbyId(id);
 
             var del = _data.DeleteCarteradet(cartera);
 
