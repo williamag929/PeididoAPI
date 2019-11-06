@@ -7,3 +7,4 @@ bin/Debug/netcoreapp2.1/PedidoApi.runtimeconfig.dev.json
 bin/Debug/netcoreapp2.1/PedidoApi.deps.json
 bin/Debug/netcoreapp2.1/PedidoApi.deps.json
 bin/Debug/netcoreapp2.1/PedidoApi.dll
+obj/Debug/netcoreapp2.1/PedidoApi.assets.cache
