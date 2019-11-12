@@ -20,11 +20,11 @@ namespace PedidoApi.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            var constr = _options.constr;
+             var constr = _options.constr;
             
             _data = new DataCartera(constr);
 
-            List<Cartera> listado = _data.GetComprobantes(id);
+            List<cart_enc> listado = _data.GetComprobantes(id);
 
             return Json(listado);
         }

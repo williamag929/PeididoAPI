@@ -49,6 +49,7 @@ namespace PedidoApi.Models
         public string formapago {get;set;}
         public int plazo {get;set;}
         public string direccionentr {get;set;}
+        public decimal? peso {get;set;}
 
     }
 
@@ -74,6 +75,8 @@ namespace PedidoApi.Models
         public string formapago {get;set;}
         public int plazo {get;set;}
         public string direccionentr {get;set;}
+
+        public decimal peso {get;set;}
     }
 
     public class ped_det
