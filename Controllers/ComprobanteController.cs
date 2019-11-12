@@ -31,7 +31,7 @@ namespace PedidoApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult SetCartera([FromBody]  cart_enc model)
+        public IActionResult SetComprobante([FromBody]  cart_enc model)
         {
             var constr = _options.constr;
             

@@ -140,7 +140,7 @@ namespace PedidoApi.Models
             return Model;
         }
 
-        public cart_det GetCarteradetbyId(int comprobanteid)
+        public cart_det GetCarteradetbyId(int comprobantedetid)
         {
              var vcarteradetItem = new cart_det();
 
