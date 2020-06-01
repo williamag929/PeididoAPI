@@ -22,6 +22,17 @@ namespace PedidoApi.Models
         public string body { get; internal set; }
     }
 
+    public class mediopago
+    {
+        public int mediopagoid {get;set;}
+        public string concepto {get;set;}
+        public string descripcion {get;set;}
+        public string tipopago {get;set;}
+        public bool aplicadescuento {get;set;}
+        public bool aplicaplazo {get;set;}
+        public string plazos {get;set;}
+        public string descuentos {get;set;}
+    }
     public class vpedido
     {
         public int ped_id { get; set; }

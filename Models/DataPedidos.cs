@@ -141,12 +141,40 @@ namespace PedidoApi.Models {
                         Model.port = (int) dataReader["port"];
                         Model.subject = (string) dataReader["subject"];
                         Model.body = (string) dataReader["body"];
+                        
                     }
                     Console.WriteLine (Model.texto1);
                 }
             }
             return Model;
         }
+
+        public List<mediopago> Getmediopagos () {
+            var Listado = new List<mediopago> ();
+            
+            Console.WriteLine ("Leyendo");
+            List<DbParameter> parameterList = new List<DbParameter> ();
+            //parameterList.Add(base.GetParameter("option", 1));
+            using (DbDataReader dataReader = base.GetDataReader ("Get_Mediopago", parameterList, CommandType.StoredProcedure)) {
+                if (dataReader != null && dataReader.HasRows) {
+                    while (dataReader.Read ()) {
+                        var Model = new mediopago ();
+                        Model.mediopagoid = (int) dataReader["mediopagoid"];
+                        Model.concepto = (string) dataReader["concepto"];
+                        Model.descripcion = (string) dataReader["descripcion"];
+                        Model.tipopago = (string) dataReader["tipopago"];
+                        Model.aplicadescuento = (bool) dataReader["aplicadescuento"];
+                        Model.aplicaplazo = (bool) dataReader["aplicaplazo"];
+                        Model.plazos = (string) dataReader["plazos"];
+                        Model.descuentos = (string) dataReader["descuentos"];
+
+                        Listado.Add(Model);
+                    }
+                }
+            }
+            return Listado;
+        }
+
 
         ///traer pedido por id
         public ped_enc GetPedidobyId (int ped_id) {

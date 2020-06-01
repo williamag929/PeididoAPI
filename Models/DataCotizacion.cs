@@ -256,7 +256,7 @@ namespace PedidoApi.Models
             return Model;
         }
 
-        public cot_enc cot_generarpedido(cot_enc Model)
+        public int cot_generarpedido(cot_enc Model)
         {
 
             Console.WriteLine("Actualiza Cotizacion " + Model.cot_id);
@@ -282,9 +282,10 @@ namespace PedidoApi.Models
 
             base.ExecuteNonQuery("sp_Cot_Pedido", parameterList, CommandType.StoredProcedure);
 
+            var ped_id = (int)IdParamter.Value;
             //Model.cot_id = (int)IdParamter.Value;
 
-            return Model;
+            return ped_id;
 
         }
 

@@ -205,7 +205,7 @@ namespace PedidoApi.Controllers
 
             var p = _data.GetCotizacionbyId(model.cot_id);
 
-            _data.cot_generarpedido(model);
+            var ped_id = _data.cot_generarpedido(model);
 
             //todo: actualizar con modelo recibido para enviar notas
             //_data.UpdateCotizacion(model);
@@ -216,9 +216,9 @@ namespace PedidoApi.Controllers
             }
             catch{}
 
-            Console.WriteLine("numero" + model.cot_numero);
+            Console.WriteLine("id" + ped_id);
 
-            return Json(model);
+            return Json(ped_id);
         }
 
         
