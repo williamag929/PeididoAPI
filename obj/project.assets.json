@@ -12934,19 +12934,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\willi\\.nuget\\packages\\": {}
+    "/home/williamaguirre/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\workspace\\PeididoAPI\\PedidoApi.csproj",
+      "projectUniqueName": "/home/williamaguirre/PeididoAPI/PedidoApi.csproj",
       "projectName": "PedidoApi",
-      "projectPath": "c:\\workspace\\PeididoAPI\\PedidoApi.csproj",
-      "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-      "outputPath": "c:\\workspace\\PeididoAPI\\obj\\",
+      "projectPath": "/home/williamaguirre/PeididoAPI/PedidoApi.csproj",
+      "packagesPath": "/home/williamaguirre/.nuget/packages/",
+      "outputPath": "/home/williamaguirre/PeididoAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/williamaguirre/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -13000,7 +13000,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
       }
     }
   }

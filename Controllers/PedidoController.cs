@@ -31,6 +31,8 @@ namespace PedidoApi.Controllers
             return Json(pedido);
         }
 
+        
+
         [HttpPost]
         public IActionResult SetPedido([FromBody]  ped_enc model)
         {

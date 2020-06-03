@@ -175,6 +175,28 @@ namespace PedidoApi.Models {
             return Listado;
         }
 
+        public int ped_duplica(ped_id)
+        {
+
+            Console.WriteLine("Duplica Pedido " + Model.cot_id);
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+
+            DbParameter IdParamter = base.GetParameterOut("new_ped_id", SqlDbType.Int, ped_id);
+            parameterList.Add(IdParamter);
+            parameterList.Add(base.GetParameter("ped_id", ped_id));
+
+
+
+            base.ExecuteNonQuery("sp_duplica_pedido", parameterList, CommandType.StoredProcedure);
+
+            var ped_id = (int)IdParamter.Value;
+            //Model.cot_id = (int)IdParamter.Value;
+
+            return ped_id;
+
+        }
+
 
         ///traer pedido por id
         public ped_enc GetPedidobyId (int ped_id) {
