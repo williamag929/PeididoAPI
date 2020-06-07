@@ -41,9 +41,12 @@ namespace PedidoApi.Models
                         CarteraItem.cli_nombre = (string)dataReader["CLI_NOMBRE"];
                         CarteraItem.tipo = (string)dataReader["TIPO"];
                         CarteraItem.numero = (Int32)dataReader["NUMERO"];
-                        CarteraItem.fecha = (DateTime)dataReader["FECHA"];
-                        CarteraItem.fechaven = (DateTime)dataReader["FECHAVEN"];
-                        CarteraItem.rango = (string)dataReader["RANGO"];
+                        if (dataReader["FECHA"] != DBNull.Value)
+                            CarteraItem.fecha = (DateTime)dataReader["FECHA"];
+                        if (dataReader["FECHAVEN"] != DBNull.Value)
+                            CarteraItem.fechaven = (DateTime)dataReader["FECHAVEN"];
+                        if (dataReader["RANGO"] != DBNull.Value)
+                            CarteraItem.rango = (string)dataReader["RANGO"];
                         if (dataReader["SALDO"] != DBNull.Value)
                             CarteraItem.saldo = (decimal)dataReader["SALDO"];
                         if (dataReader["VEND_ID"] != DBNull.Value)
@@ -127,9 +130,9 @@ namespace PedidoApi.Models
             parameterList.Add(base.GetParameter("sucursalid", Model.sucursalid));
             parameterList.Add(base.GetParameter("fechains", Model.fechains));
             parameterList.Add(base.GetParameter("fechamod", Model.fechamod));
-            parameterList.Add(base.GetParameter("vendid ", Model.vendid ));
-            parameterList.Add(base.GetParameter("totalrecibido ", Model.totalrecibido ));
-            parameterList.Add(base.GetParameter("estado", Model.estado));           
+            parameterList.Add(base.GetParameter("vendid ", Model.vendid));
+            parameterList.Add(base.GetParameter("totalrecibido ", Model.totalrecibido));
+            parameterList.Add(base.GetParameter("estado", Model.estado));
             parameterList.Add(base.GetParameter("option", 1));
 
 
@@ -142,7 +145,7 @@ namespace PedidoApi.Models
 
         public cart_det GetCarteradetbyId(int comprobantedetid)
         {
-             var vcarteradetItem = new cart_det();
+            var vcarteradetItem = new cart_det();
 
             return vcarteradetItem;
         }
@@ -159,7 +162,7 @@ namespace PedidoApi.Models
         }
         #endregion
 
-      public cart_enc GetComprobantebyId(int comprobanteid)
+        public cart_enc GetComprobantebyId(int comprobanteid)
         {
             var Model = new cart_enc();
             List<DbParameter> parameterList = new List<DbParameter>();
@@ -209,7 +212,7 @@ namespace PedidoApi.Models
         public List<cart_enc> GetComprobantes(int id)
         {
 
-            
+
 
             List<DbParameter> parameterList = new List<DbParameter>();
 
@@ -218,13 +221,13 @@ namespace PedidoApi.Models
             DbParameter IdParamter = base.GetParameterOut("new_comprobanteid", SqlDbType.Int, id);
             parameterList.Add(IdParamter);
             parameterList.Add(base.GetParameter("comprobanteid", id));
-       
+
             parameterList.Add(base.GetParameter("option", 1));
 
 
             base.ExecuteNonQuery("sp_comprobante", parameterList, CommandType.StoredProcedure);
 
-            
+
 
             return model;
         }

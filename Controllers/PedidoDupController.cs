@@ -29,29 +29,27 @@ namespace PedidoApi.Controllers
         private DataPedidos _data;
 
         [HttpPost]
-        public IActionResult duplica([FromBody]  ped_enc model)
+        public IActionResult duplica([FromBody] ped_enc model)
         {
             Console.WriteLine("id: " + model.ped_id.ToString());
 
             var constr = _options.constr;
 
-           _data = new DataPedidos(constr);
-
-            
-            var ped_id = _data.ped_duplica(model.ped_id);
-
+            _data = new DataPedidos(constr);
             //todo: actualizar con modelo recibido para enviar notas
             //_data.UpdateCotizacion(model);
 
             try
             {
-                creaPdf(model);
+                var new_ped_id = _data.ped_duplica(model.ped_id);
+                Console.WriteLine("id" + new_ped_id);
+
+                return Json(new_ped_id);
             }
-            catch{}
+            catch { }
 
-            Console.WriteLine("id" + ped_id);
+            return Json(404);
 
-            return Json(ped_id);
         }
 
     }

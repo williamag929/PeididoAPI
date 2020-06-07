@@ -175,10 +175,10 @@ namespace PedidoApi.Models {
             return Listado;
         }
 
-        public int ped_duplica(ped_id)
+        public int ped_duplica(int ped_id)
         {
 
-            Console.WriteLine("Duplica Pedido " + Model.cot_id);
+            //Console.WriteLine("Duplica Pedido " + ped_id);
 
             List<DbParameter> parameterList = new List<DbParameter>();
 
@@ -190,10 +190,9 @@ namespace PedidoApi.Models {
 
             base.ExecuteNonQuery("sp_duplica_pedido", parameterList, CommandType.StoredProcedure);
 
-            var ped_id = (int)IdParamter.Value;
-            //Model.cot_id = (int)IdParamter.Value;
+            var new_ped_id = (int)IdParamter.Value;
 
-            return ped_id;
+            return new_ped_id;
 
         }
 
