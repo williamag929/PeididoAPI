@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/williamaguirre/PeididoAPI/PedidoApi.csproj": {}
+    "C:\\workspace\\PeididoAPI\\PedidoApi.csproj": {}
   },
   "projects": {
-    "/home/williamaguirre/PeididoAPI/PedidoApi.csproj": {
+    "C:\\workspace\\PeididoAPI\\PedidoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/williamaguirre/PeididoAPI/PedidoApi.csproj",
+        "projectUniqueName": "C:\\workspace\\PeididoAPI\\PedidoApi.csproj",
         "projectName": "PedidoApi",
-        "projectPath": "/home/williamaguirre/PeididoAPI/PedidoApi.csproj",
-        "packagesPath": "/home/williamaguirre/.nuget/packages/",
-        "outputPath": "/home/williamaguirre/PeididoAPI/obj/",
+        "projectPath": "C:\\workspace\\PeididoAPI\\PedidoApi.csproj",
+        "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
+        "outputPath": "C:\\workspace\\PeididoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/williamaguirre/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -68,7 +68,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

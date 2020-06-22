@@ -38,5 +38,14 @@ namespace PedidoApi.Models
         public decimal existencia {get; set;}
     }
 
+    public class productoimg
+    {
+        public string prod_cod {get;set;}
+        public string prod_default {get;set;}
+        public string urlimage {get;set;}
+        public string descripcion {get;set;}
+        public string nombre {get;set;}
+    }
+
 
 }
