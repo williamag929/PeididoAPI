@@ -275,6 +275,36 @@ namespace PedidoApi.Models {
             return Model;
 
         }
+
+        public List<productoimg> GetProductosimg () {
+
+            var productosImg = new List<productoimg> ();
+
+            List<DbParameter> parameterList = new List<DbParameter> ();
+            parameterList.Add (base.GetParameter ("pro_id", null));
+
+            using (DbDataReader dataReader = base.GetDataReader ("Get_ProductoImg", parameterList, CommandType.StoredProcedure)) {
+
+                //Console.WriteLine("Leyendo");
+
+                if (dataReader != null && dataReader.HasRows) {
+                    while (dataReader.Read ()) {
+
+                        var Model = new productoimg ();
+
+                        Model.prod_cod = (string) dataReader["prod_cod"];
+                        Model.prod_default = (string) dataReader["prod_default"];
+                        Model.urlimage = (string) dataReader["urlimage"];
+                        Model.descripcion = (string) dataReader["descripcion"];
+                        Model.nombre = (string) dataReader["nombre"];
+
+                        productosImg.Add (Model);
+
+                    }
+                }
+            }
+            return productosImg;
+        }
         public List<producto> GetProducto (int ped_id, string pro_id) {
             List<producto> productos = new List<producto> ();
             producto productoItem = null;

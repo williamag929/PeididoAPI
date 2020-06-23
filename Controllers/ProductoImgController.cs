@@ -15,6 +15,18 @@ namespace PedidoApi.Controllers {
 
         private DataProductos _data;
 
+                [HttpGet]
+        public JsonResult Get () {
+        
+            var constr = _options.constr;
+
+            _data = new DataProductos (constr);
+
+            var productoimg = _data.GetProductosimg ();
+
+            return Json (productoimg);
+        }
+
         [HttpGet ("{id}")]
         public JsonResult GetById (string id) {
         
@@ -26,5 +38,7 @@ namespace PedidoApi.Controllers {
 
             return Json (productoimg);
         }
+
+        
     }
 }
