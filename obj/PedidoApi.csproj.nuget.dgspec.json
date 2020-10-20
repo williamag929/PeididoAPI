@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\workspace\\PeididoAPI\\PedidoApi.csproj": {}
+    "c:\\workspace\\PeididoAPI\\PedidoApi.csproj": {}
   },
   "projects": {
-    "C:\\workspace\\PeididoAPI\\PedidoApi.csproj": {
+    "c:\\workspace\\PeididoAPI\\PedidoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workspace\\PeididoAPI\\PedidoApi.csproj",
+        "projectUniqueName": "c:\\workspace\\PeididoAPI\\PedidoApi.csproj",
         "projectName": "PedidoApi",
-        "projectPath": "C:\\workspace\\PeididoAPI\\PedidoApi.csproj",
+        "projectPath": "c:\\workspace\\PeididoAPI\\PedidoApi.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "C:\\workspace\\PeididoAPI\\obj\\",
+        "outputPath": "c:\\workspace\\PeididoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config"
