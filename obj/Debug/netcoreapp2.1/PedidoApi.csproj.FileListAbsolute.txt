@@ -106,3 +106,4 @@ C:\workspace\PeididoAPI\obj\Debug\netcoreapp2.1\PedidoApi.AssemblyInfo.cs
 C:\workspace\PeididoAPI\obj\Debug\netcoreapp2.1\PedidoApi.RazorTargetAssemblyInfo.cache
 C:\workspace\PeididoAPI\obj\Debug\netcoreapp2.1\PedidoApi.dll
 C:\workspace\PeididoAPI\obj\Debug\netcoreapp2.1\PedidoApi.pdb
+C:\workspace\PeididoAPI\bin\Debug\netcoreapp2.1\package-lock.json

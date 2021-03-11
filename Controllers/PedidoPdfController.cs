@@ -31,7 +31,7 @@ namespace PedidoApi.Controllers
 
         ///cambio envio
         [HttpGet("{id}")]
-        public HttpResponseMessage GetPdf(int id)
+        public IActionResult GetPdf(int id)
         {
 
             var constr = _options.constr;
@@ -85,7 +85,7 @@ namespace PedidoApi.Controllers
                     int orderNo = Convert.ToInt32(p.ped_numero);
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<table width='100%' cellspacing='0' cellpadding='2'>");
-                    sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>Pedido de Venta</b></td></tr>");
+                    sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>"+ config.empresa + "</b></td></tr>");
                     sb.Append("<tr><td colspan = '2'></td></tr>");
                     sb.Append("<tr><td><b>Pedido No:</b>");
                     sb.Append(orderNo);
@@ -98,23 +98,25 @@ namespace PedidoApi.Controllers
                     sb.Append("</table>");
                     sb.Append("<br />");
                     sb.Append("<table border = '1'>");
-                    sb.Append("<tr>");
-                    sb.Append("<th width='15%' style = 'background-color: #D20B0C;color:#ffffff'>");
-                    sb.Append("Ref.");
-                    sb.Append("</th>");
-                    sb.Append("<th colspan = '2' style = 'background-color: #D20B0C;color:#ffffff;'>");
-                    sb.Append("Producto");
-                    sb.Append("</th>");
-                    sb.Append("<th width='15%' style = 'background-color: #D20B0C;color:#ffffff'>");
-                    sb.Append("Cantidad");
-                    sb.Append("</th>");
-                    sb.Append("<th width='15%' style = 'background-color: #D20B0C;color:#ffffff;width:50px'>");
-                    sb.Append("Precio");
-                    sb.Append("</th>");
-                    sb.Append("<th width='15%' style = 'background-color: #D20B0C;color:#ffffff'>");
-                    sb.Append("Subtotal");
-                    sb.Append("</th>");
-                    sb.Append("</tr>");
+
+                    sb.Append ("<tr>");
+                    sb.Append ("<th width='15%' style= 'font-size:11;'>");
+                    sb.Append ("Ref.");
+                    sb.Append ("</th>");
+                    sb.Append ("<th colspan = '2' style= 'font-size:11;'>");
+                    sb.Append ("Producto");
+                    sb.Append ("</th>");
+                    sb.Append ("<th width='15%' style= 'font-size:11;'>");
+                    sb.Append ("Cantidad");
+                    sb.Append ("</th>");
+                    sb.Append ("<th width='15%' style= 'font-size:11;'>");
+                    sb.Append ("Precio");
+                    sb.Append ("</th>");
+                    sb.Append ("<th width='15%' style= 'font-size:11;'>");
+                    sb.Append ("Subtotal");
+                    sb.Append ("</th>");
+                    sb.Append ("</tr>");
+
 
 
                     foreach (DataRow row in dt.Rows)
@@ -169,24 +171,33 @@ namespace PedidoApi.Controllers
                         FileStream Fs = System.IO.File.Create(fileName);
                         Fs.Write(bytes, 0, (int)bytes.Length);
                         Fs.Close();
-                        //return (new MemoryStream(bytes)
+                        
+                        return File(bytes, "application/pdf", "pedido" + p.ped_numero + ".pdf");
 
-                        result.Content = new StreamContent(memoryStream);
+                        //return File (Encoding.UTF8.GetBytes (Fs), "text/csv", "pedido" + p.ped_numero + ".csv");
 
-                        result.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");//octet-stream
-                        Console.WriteLine("Pdf procesado");
+                        //return File(new MemoryStream(bytes)
+
+                        //result.Content = new StreamContent(memoryStream);
+
+                        //result.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");//octet-stream
+                        //Console.WriteLine("Pdf procesado");
 
 
-                        return result;
+                        //return result;
                         //mm.Attachments.Add(new Attachment, "pedidoventa" + orderNo + ".pdf"));
                     }
                 }
 
             }
 
+
+
             Console.WriteLine("Pdf bad");
 
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            return BadRequest("request is incorrect");
+
+            //return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         ///marca el pedido como cerrado

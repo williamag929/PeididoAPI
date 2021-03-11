@@ -107,38 +107,36 @@ namespace PedidoApi.Models
             return vcotizaciones;
         }
 
-        public Config GetConfig()
-        {
-            var Model = new Config();
-            Console.WriteLine("Leyendo");
-            List<DbParameter> parameterList = new List<DbParameter>();
-            parameterList.Add(base.GetParameter("option", 1));
-            using (DbDataReader dataReader = base.GetDataReader("Get_Config", parameterList, CommandType.StoredProcedure))
-            {
-                if (dataReader != null && dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        Model.nit = (string)dataReader["NIT"];
-                        Model.empresa = (string)dataReader["EMPRESA"];
-                        Model.direccion = (string)dataReader["DIRECCION"];
-                        Model.telefono = (string)dataReader["TELEFONO"];
-                        Model.telefono2 = (string)dataReader["TELEFONO2"];
-                        Model.texto1 = (string)dataReader["TEXTO1"];
-                        Model.texto2 = (string)dataReader["TEXTO2"];
-                        Model.texto3 = (string)dataReader["TEXTO3"];
-                        Model.smtp = (string)dataReader["smtp"];
-                        Model.usuario = (string)dataReader["usuario"];
-                        Model.password = (string)dataReader["password"];
-                        Model.port = (int)dataReader["port"];
-                        Model.subject = (string)dataReader["subject"];
-                        Model.body = (string)dataReader["body"];
+        public Config GetConfig () {
+            var Model = new Config ();
+            Console.WriteLine ("Leyendo");
+            List<DbParameter> parameterList = new List<DbParameter> ();
+            //parameterList.Add(base.GetParameter("option", 1));
+            using (DbDataReader dataReader = base.GetDataReader ("Get_Config", parameterList, CommandType.StoredProcedure)) {
+                if (dataReader != null && dataReader.HasRows) {
+                    while (dataReader.Read ()) {
+                        Model.nit = (string) dataReader["NIT"];
+                        Model.empresa = (string) dataReader["EMPRESA"];
+                        Model.direccion = (string) dataReader["DIRECCION"];
+                        Model.telefono = (string) dataReader["TELEFONO"];
+                        Model.telefono2 = (string) dataReader["TELEFONO2"];
+                        Model.texto1 = (string) dataReader["TEXTO1"];
+                        Model.texto2 = (string) dataReader["TEXTO2"];
+                        Model.texto3 = (string) dataReader["TEXTO3"];
+                        Model.smtp = (string) dataReader["smtp"];
+                        Model.usuario = (string) dataReader["usuario"];
+                        Model.password = (string) dataReader["password"];
+                        Model.port = (int) dataReader["port"];
+                        Model.subject = (string) dataReader["subject"];
+                        Model.body = (string) dataReader["body"];
+                        
                     }
-                    Console.WriteLine(Model.texto1);
+                    Console.WriteLine (Model.texto1);
                 }
             }
             return Model;
         }
+
         public cot_enc GetCotizacionbyId(int cot_id)
         {
             //Console.WriteLine(cot_id.ToString());
